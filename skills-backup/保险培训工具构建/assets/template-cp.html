@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>{{COMPANY}} · {{PRODUCT_DISPLAY}} · 产品介绍</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#f5f0e8;color:#2a221a;font-family:"Noto Serif SC","SimSun",serif;min-height:100vh;display:flex;justify-content:center;padding:16px;}
+#app{max-width:680px;width:100%;min-height:90vh;background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.06);position:relative;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.topbar .brand{font-size:11px;color:#b0a898;letter-spacing:1px;}
+.audiobtn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;}
+.audiobtn.on{color:#c0392b;border-color:#c0392b;}
+.bgmbtn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 10px;border-radius:6px;font-size:12px;margin-left:4px;cursor:pointer;font-family:inherit;}
+.bgmbtn.on{color:#27ae60;border-color:#27ae60;}
+.si{font-size:32px;text-align:center;margin:6px 0 10px;}
+.st{font-size:13px;color:#c0392b;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+.prod-box{background:#faf6ef;border:1px solid #e8e0d0;border-radius:10px;padding:12px;margin:10px 0;}
+.prod-box h3{font-size:13px;color:#c0392b;margin-bottom:6px;}
+.prod-table{width:100%;border-collapse:collapse;font-size:12px;}
+.prod-table th{background:#f0e8d8;padding:6px 6px;text-align:center;font-weight:bold;border:1px solid #e0d8c8;font-size:11px;}
+.prod-table td{padding:5px 6px;text-align:center;border:1px solid #e0d8c8;font-size:12px;}
+.prod-table .rl{text-align:left;background:#f8f4ec;font-weight:bold;font-size:11px;}
+.prod-table .hl{background:#fff8ee;font-weight:bold;color:#c0392b;}
+.highlight{background:#fef9e7;border-left:3px solid #c0392b;padding:10px 14px;border-radius:4px;font-size:14px;margin:10px 0;line-height:1.6;}
+.tip{background:#eaf2f8;border-left:3px solid #2980b9;padding:10px 14px;border-radius:4px;font-size:13px;margin:10px 0;line-height:1.6;}
+.story{font-size:15px;line-height:1.8;color:#3a2a1a;margin-bottom:14px;}
+.story p{margin-bottom:8px;}
+.qt{font-size:14px;color:#c0392b;margin-bottom:10px;font-weight:bold;}
+.choices{display:flex;flex-direction:column;gap:8px;}
+.cbtn{background:#f5f0e8;border:1px solid #d0c8b8;color:#2a221a;padding:12px 14px;border-radius:8px;font-size:14px;font-family:inherit;cursor:pointer;text-align:left;line-height:1.4;width:100%;}
+.cbtn:active{background:#e8e0d0;}
+.cbtn.disabled{opacity:0.4;pointer-events:none;}
+.cbtn.good{border-color:#27ae60 !important;background:#eafaf1 !important;}
+.cbtn.wrong{border-color:#c0392b !important;background:#fdedec !important;}
+.footer{text-align:center;margin-top:16px;font-size:11px;color:#b0a898;}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fi 0.35s ease;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <div class="brand">{{COMPANY}}</div>
+    <div>
+      <button class="bgmbtn on" id="bgmBtn" onclick="toggleBGM()">🎵 背景</button>
+      <button class="audiobtn on" id="audioBtn" onclick="toggleAudio()">🔊 讲解</button>
+    </div>
+  </div>
+  <div id="content"></div>
+  <div class="footer">{{PRODUCT_NAME}} · {{PAGE_TYPE}}</div>
+</div>
+<script>
+var audioOn=true,bgmOn=true,curBgm=null;
+function initBGM(){if(curBgm)return;curBgm=new Audio('audio/bgm.mp3');curBgm.loop=true;curBgm.volume=0.08;}
+function playBGM(){initBGM();if(!bgmOn||!curBgm)return;curBgm.play().catch(function(){});}
+function stopBGM(){if(curBgm){curBgm.pause();}}
+function toggleBGM(){bgmOn=!bgmOn;var b=document.getElementById('bgmBtn');b.textContent=bgmOn?'🎵 背景':'🎶 静音';b.classList.toggle('on',bgmOn);if(bgmOn)playBGM();else stopBGM();}
+function playMp3(src){
+  var ap=document.getElementById('ap');
+  if(!ap){ap=document.createElement('audio');ap.id='ap';ap.style.display='none';document.getElementById('app').appendChild(ap);}
+  ap.src=src;ap.volume=0.9;ap.play().catch(function(){});
+}
+function toggleAudio(){audioOn=!audioOn;var b=document.getElementById('audioBtn');b.textContent=audioOn?'🔊 讲解':'🔇 静音';b.classList.toggle('on',audioOn);}
+function go(id){
+  if(!id)return;
+  var c=document.getElementById('content');
+  var s=S[id];if(!s){c.innerHTML='<p>场景不存在</p>';return;}
+  playMp3(s.sceneMp3||'');
+  var html='<div class="scene fade"><div class="si">'+s.icon+'</div><div class="st">'+s.title+'</div><div class="story">'+s.story+'</div>';
+  if(s.picks){
+    html+='<div class="choices">';
+    for(var i=0;i<s.picks.length;i++){
+      var p=s.picks[i];
+      if(p.type=='good'||p.type=='wrong'){
+        html+='<button class="cbtn" onclick="pick(this,'+i+')">'+p.text+'</button>';
+      } else {
+        html+='<button class="cbtn" onclick="go(\''+p.next+'\')">'+p.text+'</button>';
+      }
+    }
+    html+='</div>';
+  }
+  html+='</div>';
+  c.innerHTML=html;
+}
+function pick(el,idx){
+  var s=S[curScene];if(!s)return;
+  var p=s.picks[idx];
+  if(p.type=='good'){el.classList.add('good');el.classList.add('disabled');setTimeout(function(){go(p.next||curScene+1);},600);}
+  else{el.classList.add('wrong');setTimeout(function(){el.classList.remove('wrong');},800);}
+}
+var curScene='';
+var S={};
+// ══════ 在此处插入场景数据 ══════
+// S.start={icon:'🔥',title:'',sceneMp3:'',story:'',picks:[{text:'',next:'',type:''}]};
+</script>
+</body>
+</html>
