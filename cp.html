@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>宜家安馨—福燃气险 · 产品介绍</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
+.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
+.page.active{display:flex}
+h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px;font-weight:600}
+h2{font-size:20px;color:#f0d9a0;text-align:center;margin-bottom:16px}
+p{color:#d4c8b0;margin-bottom:12px;text-align:justify}
+.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
+.btn:active{background:#b8922e;transform:scale(0.97)}
+.start-btn{padding:18px 36px;font-size:20px;border-radius:12px}
+.option{background:transparent;border:1.5px solid #c9a84c;color:#f0d9a0;border-radius:8px;padding:12px;margin:6px 0;text-align:left}
+.option.correct{background:#2a5a2a;border-color:#4caf50;color:#c8e6c9}
+.option.wrong{background:#5a2a2a;border-color:#f44336;color:#ffcdd2}
+.option:active{background:#2a2520}
+.table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+.table th,.table td{border:1px solid #4a3f30;padding:8px 6px;text-align:center;color:#d4c8b0}
+.table th{background:#2a2520;color:#f0d9a0;font-weight:600}
+.feedback{padding:12px;border-radius:8px;margin:12px 0;font-size:15px;display:none}
+.feedback.good{background:#2a4a2a;border-left:4px solid #4caf50;display:block}
+.feedback.bad{background:#4a2a2a;border-left:4px solid #f44336;display:block}
+.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
+.tag{display:inline-block;background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;margin-right:4px}
+.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
+</style>
+</head>
+<body>
+
+<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
+<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
+<audio id="sceneAudio" preload="auto"></audio>
+
+<!-- 封面 -->
+<div class="page active" id="page-cover">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🔥</div>
+    <h1>宜家安馨—福</h1>
+    <p style="text-align:center;margin:16px 0;color:#c0b498">家用燃气综合保险 · 产品介绍</p>
+    <p style="font-size:14px;color:#8a7e68">ABCD四款 · 灵活选择 · 一天不到2毛7</p>
+    <button class="btn start-btn" onclick="go('cp-intro')">开始了解产品 →</button>
+  </div>
+</div>
+
+<!-- 1. 产品介绍 -->
+<div class="page" id="page-cp-intro">
+  <h2>🔥 什么是宜家安馨—福？</h2>
+  <p>宜家安馨—福是<b>华泰财产保险有限公司</b>承保的<b>家用燃气综合保险</b>，专门针对使用天然气的家庭用户设计。</p>
+  <div class="note">
+    <strong>保障范围：</strong><br>
+    ✅ 燃气事故导致的人身伤亡（含意外身故/伤残）<br>
+    ✅ 燃气事故导致的财产损失（房屋、装潢、室内财产）<br>
+    ✅ 第三者责任（对邻居造成的人身/财产损失）<br>
+    ✅ 可选：水暖管破裂、电路起火、自然灾害等
+  </div>
+  <p style="color:#8a7e68;font-size:14px;margin-top:12px">保险期限：一年 · 保费一次性缴清</p>
+  <button class="btn" onclick="go('cp-table')">查看ABCD四款 →</button>
+</div>
+
+<!-- 2. ABCD对比表 -->
+<div class="page" id="page-cp-table">
+  <h2>📋 四款方案对比</h2>
+  <table class="table">
+    <tr><th>保障项目</th><th>A款</th><th>B款</th><th>C款</th><th>D款</th></tr>
+    <tr><td>房屋及装潢</td><td>10万</td><td>20万</td><td>80万</td><td>100万</td></tr>
+    <tr><td>室内财产</td><td>5万</td><td>10万</td><td>30万</td><td>50万</td></tr>
+    <tr><td>第三者责任</td><td>5万</td><td>10万</td><td>20万</td><td>30万</td></tr>
+    <tr><td>意外身故/医疗</td><td>1万</td><td>2万</td><td>5万</td><td>10万</td></tr>
+    <tr><td><b>总保额</b></td><td><b>21万</b></td><td><b>42万</b></td><td><b>135万</b></td><td><b>190万</b></td></tr>
+    <tr><td><b>保费（1年）</b></td><td><b>60元</b></td><td><b>80元</b></td><td><b>100元</b></td><td><b>150元</b></td></tr>
+  </table>
+  <div class="note">
+    <strong>多保优惠：</strong><br>
+    📌 2年保费 ≈ 1年×1.9折<br>
+    📌 3年保费 ≈ 1年×2.7折
+  </div>
+  <button class="btn" onclick="go('cp-duty')">保险责任详解 →</button>
+</div>
+
+<!-- 3. 保险责任 -->
+<div class="page" id="page-cp-duty">
+  <h2>📄 保险责任</h2>
+  <div class="note" style="margin-bottom:8px">
+    <strong>① 火灾爆炸保障</strong><br>
+    因燃气泄漏引发的火灾、爆炸导致的人身伤亡和财产损失
+  </div>
+  <div class="note" style="margin-bottom:8px">
+    <strong>② 水暖管破裂</strong><br>
+    自家或邻居水暖管爆裂导致的水渍损失
+  </div>
+  <div class="note" style="margin-bottom:8px">
+    <strong>③ 电路起火</strong><br>
+    因用电不当引发的火灾导致的损失
+  </div>
+  <div class="note" style="margin-bottom:8px">
+    <strong>④ 自然灾害</strong><br>
+    暴风、暴雨、雷击等自然灾害导致的家财损失
+  </div>
+  <button class="btn" onclick="go('cp-policy')">投保单 & 保单获取 →</button>
+</div>
+
+<!-- 4. 投保单 & 保单 -->
+<div class="page" id="page-cp-policy">
+  <h2>📋 投保单原件</h2>
+  <div style="background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:16px;margin:12px 0">
+    <p style="font-size:14px;text-align:center;color:#8a7e68">投保单（点按可放大查看）</p>
+    <p style="font-size:14px;text-align:center;color:#8a7e68;margin-top:8px">—— 数据以投保单原件为准 ——</p>
+  </div>
+  <p style="font-size:14px;color:#c0b498"><strong>保单获取途径：</strong></p>
+  <ol style="color:#d4c8b0;font-size:14px;padding-left:20px;margin:8px 0">
+    <li>扫码缴费成功后下载电子保单</li>
+    <li>短信链接下载电子保单</li>
+    <li>山东港华3.0系统查询</li>
+    <li>华泰财险微信小程序查询</li>
+    <li>拨打95509热线查询</li>
+  </ol>
+  <button class="btn" onclick="go('quiz')">开始问答 →</button>
+</div>
+
+<!-- 5. 问答 -->
+<div class="page" id="page-quiz">
+  <h2>🎯 产品知识问答</h2>
+  <p id="quiz-question" style="font-size:18px;font-weight:600;color:#f0d9a0;margin:16px 0"></p>
+  <div id="quiz-options"></div>
+  <div id="quiz-feedback" class="feedback"></div>
+  <p id="quiz-progress" style="font-size:13px;color:#8a7e68;text-align:center;margin-top:12px"></p>
+</div>
+
+<!-- 完成 -->
+<div class="page" id="page-end">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">✅</div>
+    <h1>学习完成！</h1>
+    <p style="text-align:center;margin:16px 0">你已经了解了宜家安馨—福的主要保障内容。</p>
+    <p style="text-align:center;color:#c0b498;font-size:14px">回顾产品页或继续学习销售话术</p>
+    <button class="btn" onclick="go('cp-intro')" style="margin-top:20px">🔄 重新学习</button>
+  </div>
+</div>
+
+<script>
+let quizIdx = 0;
+const quiz = [
+  {q:'家财险的保险责任包括以下哪项？',o:['房屋及装潢','车辆损失','股票基金'],a:0},
+  {q:'保险标的有哪些？',o:['房屋和车辆','房屋和金银珠宝','房屋和室内财产'],a:2},
+  {q:'民用燃气险保险责任包括以下哪项？',o:['燃气火灾爆炸','酒后驾车','交通事故'],a:0},
+  {q:'以下哪种情况属于火灾的定义？',o:['意外失火','故意纵火','正常烹饪'],a:0},
+  {q:'爆炸分哪两种类型？',o:['物理爆炸和化学爆炸','大爆炸和小爆炸','燃气爆炸和电器爆炸'],a:0},
+  {q:'以下哪种情况不在理赔范围内？',o:['燃气火灾','自然灾害','故意损坏'],a:2}
+];
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(id==='quiz') startQuiz();
+}
+
+function startQuiz(){quizIdx=0;showQuiz();}
+function showQuiz(){
+  const q=quiz[quizIdx];
+  document.getElementById('quiz-question').textContent='第'+(quizIdx+1)+'题：'+q.q;
+  const opts=document.getElementById('quiz-options');opts.innerHTML='';
+  q.o.forEach((t,i)=>{
+    const b=document.createElement('button');b.className='btn option';b.textContent=t;
+    b.onclick=()=>checkQuiz(i);opts.appendChild(b);
+  });
+  document.getElementById('quiz-feedback').className='feedback';
+  document.getElementById('quiz-progress').textContent=(quizIdx+1)+'/'+quiz.length;
+}
+function checkQuiz(i){
+  const fb=document.getElementById('quiz-feedback');
+  if(i===quiz[quizIdx].a){
+    fb.className='feedback good';fb.textContent='✅ 正确！';
+    setTimeout(()=>{quizIdx++;if(quizIdx<quiz.length)showQuiz();else go('end');},1000);
+  } else {
+    fb.className='feedback bad';fb.textContent='❌ 再想想，正确答案是：'+quiz[quizIdx].o[quiz[quizIdx].a];
+    setTimeout(()=>{fb.className='feedback';},2000);
+  }
+}
+
+// BGM
+const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
+bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+</script>
+</body>
+</html>

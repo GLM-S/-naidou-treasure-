@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>宜家安馨—福 · 销售话术</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
+.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
+.page.active{display:flex}
+h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px}
+h2{font-size:20px;color:#f0d9a0;margin-bottom:12px}
+p{color:#d4c8b0;margin-bottom:12px}
+.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
+.btn:active{background:#b8922e;transform:scale(0.97)}
+.qa-item{background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:12px 16px;margin:8px 0;cursor:pointer}
+.qa-item .q{color:#f0d9a0;font-weight:500}
+.qa-item .a{color:#d4c8b0;font-size:14px;margin-top:6px;display:none;line-height:1.5}
+.qa-item.open .a{display:block}
+.tag{background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;display:inline-block;margin-bottom:8px}
+.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
+.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
+</style>
+</head>
+<body>
+
+<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
+<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
+
+<!-- 封面 -->
+<div class="page active" id="page-cover">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">💬</div>
+    <h1>销售话术</h1>
+    <p style="text-align:center;margin:16px 0;color:#c0b498">宜家安馨—福 · 燃气险销售必备</p>
+    <button class="btn start-btn" onclick="go('prepare')" style="padding:18px 36px;font-size:20px;border-radius:12px">开始学习话术 →</button>
+  </div>
+</div>
+
+<!-- 入户前准备 -->
+<div class="page" id="page-prepare">
+  <h2>📌 入户安检前的准备</h2>
+  <div class="note">
+    在入户安检前做好准备，了解常见的异议问题，一遍遍应答，以便便于应答。客户怎么说都不慌，自然引导。
+  </div>
+  <button class="btn" onclick="go('general')">一般化款话术 →</button>
+  <button class="btn" onclick="go('special')">特别款话术 →</button>
+  <button class="btn" onclick="go('qa')" style="background:transparent;border:1px solid #c9a84c;color:#f0d9a0">📋 常见问题 →</button>
+</div>
+
+<!-- 一般化款话术 -->
+<div class="page" id="page-general">
+  <h2>💳 一般化款话术</h2>
+  <p style="color:#8a7e68;font-size:14px;margin-bottom:8px">适用：安检完毕指出安全隐患后</p>
+  <div class="note" style="font-size:15px;line-height:1.8">
+    <p style="margin-bottom:8px">"顺便说一下，系统显示您家还没有办理燃气保障，因临近用气高峰目前事故频发，政府要求我们燃气公司要家家户户通知到，办理自愿不强制。"</p>
+    <p style="margin-bottom:8px">"费用的话也不高，一天2毛7一个月8块多，主要针对使用天然气造成的财产和人身损失。"</p>
+    <p style="margin-bottom:8px">"打个比方说——做饭忘记关火它赔、邻居家使用天然气不当引发的事故波及到咱家财产损失也是赔的。"</p>
+    <p>"我现在可以给您办理，按年投保，现在有100/年及190/2年的，您看您是微信、支付宝还是现金？"</p>
+  </div>
+  <button class="btn" onclick="go('special')">查看特别款话术 →</button>
+  <button class="btn" onclick="go('qa')" style="background:transparent;border:1px solid #c9a84c;color:#f0d9a0">📋 常见问题 →</button>
+</div>
+
+<!-- 特别款话术 -->
+<div class="page" id="page-special">
+  <h2>⭐ 特别款话术</h2>
+  <p style="color:#8a7e68;font-size:14px;margin-bottom:8px">适用：系统查到已脱保的用户</p>
+  <div class="note" style="font-size:15px;line-height:1.8">
+    <p style="margin-bottom:8px">"我刚才在系统里查到您的燃气安全保障已经脱保了，我给您写个单子续上，您是现金还是微信？"</p>
+    <p style="margin-bottom:8px">"不仅保障燃气事故，水电暖、自然灾害全都保。"</p>
+    <p style="margin-bottom:8px">"如同合作医疗——我们不用但是必须要有，因为风险的不确定性。身边的邻居都有配置，像忘记关火导致的燃气火灾、电器使用不当导致的起火、水暖管爆裂把自家或楼下泡了、暴风暴雨导致的漏水，都可以保障。"</p>
+    <p>"一年100元只保障燃气，两年190三年270不仅保燃气还保障全屋的水电气暖，一天不到2毛7分钱。微信支付宝都可以付款，很方便。"</p>
+  </div>
+  <button class="btn" onclick="go('qa')">📋 常见问题应答 →</button>
+</div>
+
+<!-- 常见问题 -->
+<div class="page" id="page-qa">
+  <h2>📋 常见问题 · 13问</h2>
+  <p style="color:#8a7e68;font-size:14px;margin-bottom:12px">点开查看专业话术应答</p>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "这个东西是什么？我没听说过"</div>
+    <div class="a">这是华泰财险的燃气综合险，专门保燃气事故的。咱们这边大部分用户都办了，一年才100块钱，一天不到3毛钱，万一出事保全家。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "太贵了，不需要"</div>
+    <div class="a">一天2毛7，一个月8块多。万一出事，少则几万多则上百万。相当于每天少吃一口饭，买一份安心。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "我已经买了家财险"</div>
+    <div class="a">普通家财险不保燃气事故，这个是专门针对燃气泄漏、火灾、爆炸的专项保障。跟家财险互补，不是重复。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "出了事能赔多少？"</div>
+    <div class="a">A款21万到D款190万不等，具体看您选哪款。像C款房屋装潢保80万、室内财产30万、第三者责任20万，一般家庭完全够用。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "我考虑考虑"</div>
+    <div class="a">理解，您先想想。不过今天办的话马上生效，风险不等人。要不我先给您办上，回去看看不合适再退也行。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "你们是哪个公司的？靠谱吗"</div>
+    <div class="a">华泰财产保险有限公司，国家金融监督管理总局批准成立，全国性保险公司，您随时可以查资质。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "只保燃气吗？别的管不管"</div>
+    <div class="a">特别款不仅保燃气，还包括水暖管破裂、电路起火、暴风暴雨等自然灾害。全屋水电暖都管。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "怎么理赔？麻烦不"</div>
+    <div class="a">出险打95509报案，客服全程指导。材料齐全的话，小额理赔3-5个工作日到账，不麻烦。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "家里没人住，不用买"</div>
+    <div class="a">燃气总阀关了没事，但万一邻居家燃气泄漏爆炸波及到您家，没有保险一样受损失。而且您不在家的时候管道老化更没人发现。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "我租房住"</div>
+    <div class="a">租房也一样可以投保，保的是使用燃气的地址，跟房东是谁没关系。一年100块，住得安心。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "去年买了没出事，白花钱"</div>
+    <div class="a">没出事是好事！保险就是这样——我们都希望白花钱，说明平安无事。真出事那天，您不会觉得白花了。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "小区统一买了"</div>
+    <div class="a">小区统一买的一般是公众责任险或家财险，不保燃气专项。您看一下保单上保不保燃气火灾爆炸，不保的话最好再补一份。</div>
+  </div>
+  <div class="qa-item" onclick="this.classList.toggle('open')">
+    <div class="q">❓ "能不能先给个保单看看"</div>
+    <div class="a">当然可以，支付成功后电子保单马上发送到您手机上。您也可以关注华泰财险小程序随时查看，随时能下载。</div>
+  </div>
+  <button class="btn" onclick="go('end')" style="margin-top:16px">✅ 学习完成</button>
+</div>
+
+<!-- 完成 -->
+<div class="page" id="page-end">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">✅</div>
+    <h1>话术学习完成！</h1>
+    <p style="text-align:center;margin:16px 0">你已经掌握了宜家安馨—福的主要销售话术。</p>
+    <p style="text-align:center;color:#c0b498;font-size:14px">入户前复习一下，客户怎么说都不慌。</p>
+    <button class="btn" onclick="go('prepare')" style="margin-top:20px">🔄 重新学习</button>
+  </div>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
+bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+</script>
+</body>
+</html>

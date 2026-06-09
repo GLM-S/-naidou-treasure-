@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>宜家安馨—福 · 理赔案例</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
+.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
+.page.active{display:flex}
+h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px}
+h2{font-size:20px;color:#f0d9a0;margin-bottom:12px}
+p{color:#d4c8b0;margin-bottom:12px}
+.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
+.btn:active{background:#b8922e;transform:scale(0.97)}
+.case-card{background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:16px;margin:12px 0}
+.case-card .type{font-size:14px;color:#c9a84c;font-weight:600;margin-bottom:4px}
+.case-card .amt{font-size:24px;color:#f0d9a0;font-weight:700;margin:4px 0}
+.case-card .desc{color:#d4c8b0;font-size:14px;line-height:1.6}
+.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
+.option{background:transparent;border:1.5px solid #c9a84c;color:#f0d9a0;border-radius:8px;padding:12px;margin:6px 0;text-align:left}
+.feedback{padding:12px;border-radius:8px;margin:12px 0;font-size:15px;display:none}
+.feedback.good{background:#2a4a2a;border-left:4px solid #4caf50;display:block}
+.feedback.bad{background:#4a2a2a;border-left:4px solid #f44336;display:block}
+.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
+.tag{display:inline-block;background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;margin-right:4px}
+</style>
+</head>
+<body>
+
+<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
+<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
+
+<!-- 封面 -->
+<div class="page active" id="page-cover">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">📸</div>
+    <h1>理赔案例</h1>
+    <p style="text-align:center;margin:16px 0;color:#c0b498">用真实案例说话 · 让客户放心</p>
+    <button class="btn" onclick="go('cases')" style="padding:18px 36px;font-size:20px;border-radius:12px">查看案例 →</button>
+  </div>
+</div>
+
+<!-- 真实理赔案例 -->
+<div class="page" id="page-cases">
+  <h2>🔥 真实理赔案例</h2>
+
+  <div class="case-card">
+    <div class="type">🔥 燃气引发火灾</div>
+    <div class="amt">¥2,000</div>
+    <div class="desc">某小区用户家中燃气软管老化泄漏，遇明火引发火灾，厨房烧毁。<br>
+    经审核符合保险责任，赔付房屋装潢及财产损失合计2000元。</div>
+  </div>
+
+  <div class="case-card">
+    <div class="type">💧 水暖管破裂</div>
+    <div class="amt">¥8,600</div>
+    <div class="desc">某小区5楼用户水暖管突然爆裂，水流渗透至4楼邻居家中，造成天花板、墙面受损。<br>
+    属于保险责任，赔付自身及第三者损失合计8600元。</div>
+  </div>
+
+  <div class="case-card">
+    <div class="type">⚡ 电路起火</div>
+    <div class="amt">¥5,000</div>
+    <div class="desc">某用户家中线路老化导致短路起火，卧室家具、电器严重烧毁。<br>
+    经核实属保险责任，赔付室内财产及装潢损失合计5000元。</div>
+  </div>
+
+  <div class="case-card">
+    <div class="type">🌊 暴雨灾害</div>
+    <div class="amt">¥500</div>
+    <div class="desc">某小区因暴雨导致屋顶渗水，室内墙面、地板受损。<br>
+    属于自然灾害保障范围，赔付修复费用500元。</div>
+  </div>
+
+  <button class="btn" onclick="go('quiz')" style="margin-top:12px">🎯 看图识灾挑战 →</button>
+</div>
+
+<!-- 看图识灾 -->
+<div class="page" id="page-quiz">
+  <h2>🎯 看图识灾</h2>
+  <p id="quiz-question" style="font-size:15px;color:#f0d9a0;margin:12px 0;line-height:1.6"></p>
+  <div id="quiz-options"></div>
+  <div id="quiz-feedback" class="feedback"></div>
+  <p id="quiz-progress" style="font-size:13px;color:#8a7e68;text-align:center;margin-top:12px"></p>
+</div>
+
+<!-- 完成 -->
+<div class="page" id="page-end">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">💪</div>
+    <h1>用案例说话！</h1>
+    <p style="text-align:center;margin:16px 0">这些真实案例说明——</p>
+    <p style="text-align:center;font-size:20px;color:#f0d9a0;margin:12px 0">"风险就在身边，保障不贵但安心"</p>
+    <p style="text-align:center;color:#c0b498;font-size:14px;">——华泰财产保险，守护每一个家</p>
+    <button class="btn" onclick="go('cases')" style="margin-top:20px">🔄 重新查看</button>
+  </div>
+</div>
+
+<script>
+const quiz=[
+  {q:'照片中厨房严重烧毁，橱柜、油烟机全部损坏，墙皮大面积脱落。这属于哪种事故类型？',o:['🔥 燃气火灾','💧 水暖管破裂','⚡ 电路起火'],a:0},
+  {q:'照片中客厅天花板有大片水渍，墙面起皮脱落，地板泡水变形。这是哪种事故？',o:['🔥 燃气火灾','💧 水暖管破裂','🌊 暴雨灾害'],a:1},
+  {q:'照片中电线短路烧焦，墙面插座周围熏黑，电器外壳熔化。这是哪种事故？',o:['💧 水暖管破裂','⚡ 电路起火','🌊 暴雨灾害'],a:1},
+  {q:'照片中屋顶渗水，墙面有大面积霉斑，雨水从裂缝渗入室内。这是哪种事故？',o:['🔥 燃气火灾','⚡ 电路起火','🌊 暴雨灾害'],a:2}
+];
+let qidx=0;
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(id==='quiz'){qidx=0;showQ();}
+}
+function showQ(){
+  const q=quiz[qidx];
+  document.getElementById('quiz-question').textContent='第'+(qidx+1)+'题：'+q.q.substring(0,50)+'……';
+  const opts=document.getElementById('quiz-options');opts.innerHTML='';
+  q.o.forEach((t,i)=>{
+    const b=document.createElement('button');b.className='btn option';b.textContent=t;
+    b.onclick=()=>checkQ(i);opts.appendChild(b);
+  });
+  document.getElementById('quiz-feedback').className='feedback';
+  document.getElementById('quiz-progress').textContent=(qidx+1)+'/'+quiz.length;
+}
+function checkQ(i){
+  const fb=document.getElementById('quiz-feedback');
+  if(i===quiz[qidx].a){
+    fb.className='feedback good';fb.textContent='✅ 正确！';
+    setTimeout(()=>{qidx++;if(qidx<quiz.length)showQ();else go('end');},1000);
+  } else {
+    fb.className='feedback bad';fb.textContent='❌ 再想想，正确答案是：'+quiz[qidx].o[quiz[qidx].a];
+    setTimeout(()=>{fb.className='feedback';},2000);
+  }
+}
+const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
+bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+</script>
+</body>
+</html>
