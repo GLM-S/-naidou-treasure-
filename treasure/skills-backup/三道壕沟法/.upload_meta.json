@@ -1,0 +1,9 @@
+{
+  "origin": "fixed",
+  "parent_skill_ids": [
+    "三道壕沟法__imp_f20127d9"
+  ],
+  "change_summary": "Fixed truncated table cell in 第零道壕沟 and added missing \"第一道壕沟\" section heading",
+  "created_by": "deepseek/deepseek-v4-flash",
+  "tags": []
+}

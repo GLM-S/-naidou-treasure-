@@ -15,8 +15,8 @@ echo " 适用：Ubuntu 22.04 全新系统"
 echo "========================================"
 
 # ---------- 配置区（执行前按需修改）----------
-GITHUB_REPO="git@github.com:GLM-S/naidou-treasure.git"
-GITHUB_REPO_HTTPS="https://github.com/GLM-S/naidou-treasure.git"
+GITHUB_REPO="git@github.com:GLM-S/-naidou-treasure-.git"
+GITHUB_REPO_HTTPS="https://github.com/GLM-S/-naidou-treasure-.git"
 WORKSPACE_DIR="$HOME/.openclaw/workspace"
 DIFY_DIR="$HOME/dify"
 DATA_DISK_MOUNT="/mnt/data"
@@ -73,7 +73,7 @@ echo ""
 echo "[5/8] 从 GitHub 拉取配置文件..."
 if [ ! -d "$HOME/naidou-treasure" ]; then
   git clone "$GITHUB_REPO_HTTPS" "$HOME/naidou-treasure" 2>/dev/null || \
-  git clone "https://kkgithub.com/GLM-S/naidou-treasure.git" "$HOME/naidou-treasure"
+  git clone "https://kkgithub.com/GLM-S/-naidou-treasure-.git" "$HOME/naidou-treasure"
 fi
 
 # 如果 clone 成功，恢复配置文件
