@@ -3,188 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>宜家安馨—福燃气险 · 产品介绍</title>
+<title>华泰 · 宜家安馨—福 · 产品介绍</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
-.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
-.page.active{display:flex}
-h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px;font-weight:600}
-h2{font-size:20px;color:#f0d9a0;text-align:center;margin-bottom:16px}
-p{color:#d4c8b0;margin-bottom:12px;text-align:justify}
-.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
-.btn:active{background:#b8922e;transform:scale(0.97)}
-.start-btn{padding:18px 36px;font-size:20px;border-radius:12px}
-.option{background:transparent;border:1.5px solid #c9a84c;color:#f0d9a0;border-radius:8px;padding:12px;margin:6px 0;text-align:left}
-.option.correct{background:#2a5a2a;border-color:#4caf50;color:#c8e6c9}
-.option.wrong{background:#5a2a2a;border-color:#f44336;color:#ffcdd2}
-.option:active{background:#2a2520}
-.table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
-.table th,.table td{border:1px solid #4a3f30;padding:8px 6px;text-align:center;color:#d4c8b0}
-.table th{background:#2a2520;color:#f0d9a0;font-weight:600}
-.feedback{padding:12px;border-radius:8px;margin:12px 0;font-size:15px;display:none}
-.feedback.good{background:#2a4a2a;border-left:4px solid #4caf50;display:block}
-.feedback.bad{background:#4a2a2a;border-left:4px solid #f44336;display:block}
-.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
-.tag{display:inline-block;background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;margin-right:4px}
-.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#f5f0e8;color:#2a221a;font-family:"Noto Serif SC","SimSun",serif;min-height:100vh;display:flex;justify-content:center;padding:16px;}
+#app{max-width:680px;width:100%;min-height:90vh;background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.06);position:relative;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.topbar .brand{font-size:11px;color:#b0a898;letter-spacing:1px;}
+.audiobtn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;}
+.audiobtn.on{color:#c0392b;border-color:#c0392b;}
+.bgmbtn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 10px;border-radius:6px;font-size:12px;margin-left:4px;cursor:pointer;font-family:inherit;}
+.bgmbtn.on{color:#27ae60;border-color:#27ae60;}
+.si{font-size:32px;text-align:center;margin:6px 0 10px;}
+.st{font-size:13px;color:#c0392b;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+.prod-box{background:#faf6ef;border:1px solid #e8e0d0;border-radius:10px;padding:12px;margin:10px 0;}
+.prod-box h3{font-size:13px;color:#c0392b;margin-bottom:6px;}
+.prod-table{width:100%;border-collapse:collapse;font-size:12px;}
+.prod-table th{background:#f0e8d8;padding:6px 6px;text-align:center;font-weight:bold;border:1px solid #e0d8c8;font-size:11px;}
+.prod-table td{padding:5px 6px;text-align:center;border:1px solid #e0d8c8;font-size:12px;}
+.prod-table .rl{text-align:left;background:#f8f4ec;font-weight:bold;font-size:11px;}
+.prod-table .hl{background:#fff8ee;font-weight:bold;color:#c0392b;}
+.highlight{background:#fef9e7;border-left:3px solid #c0392b;padding:10px 14px;border-radius:4px;font-size:14px;margin:10px 0;line-height:1.6;}
+.tip{background:#eaf2f8;border-left:3px solid #2980b9;padding:10px 14px;border-radius:4px;font-size:13px;margin:10px 0;line-height:1.6;}
+.story{font-size:15px;line-height:1.8;color:#3a2a1a;margin-bottom:14px;}
+.story p{margin-bottom:8px;}
+.qt{font-size:14px;color:#c0392b;margin-bottom:10px;font-weight:bold;}
+.choices{display:flex;flex-direction:column;gap:8px;}
+.cbtn{background:#f5f0e8;border:1px solid #d0c8b8;color:#2a221a;padding:12px 14px;border-radius:8px;font-size:14px;font-family:inherit;cursor:pointer;text-align:left;line-height:1.4;width:100%;}
+.cbtn:active{background:#e8e0d0;}
+.cbtn.disabled{opacity:0.4;pointer-events:none;}
+.cbtn.good{border-color:#27ae60 !important;background:#eafaf1 !important;}
+.cbtn.wrong{border-color:#c0392b !important;background:#fdedec !important;}
+.footer{text-align:center;margin-top:16px;font-size:11px;color:#b0a898;}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fi 0.35s ease;}
 </style>
+<link rel="preload" href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_start.mp3" as="audio">
+<link rel="preload" href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_plans.mp3" as="audio">
 </head>
 <body>
-
-<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
-<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
-<audio id="sceneAudio" preload="auto"></audio>
-
-<!-- 封面 -->
-<div class="page active" id="page-cover">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">🔥</div>
-    <h1>宜家安馨—福</h1>
-    <p style="text-align:center;margin:16px 0;color:#c0b498">家用燃气综合保险 · 产品介绍</p>
-    <p style="font-size:14px;color:#8a7e68">ABCD四款 · 灵活选择 · 一天不到2毛7</p>
-    <button class="btn start-btn" onclick="go('cp-intro')">开始了解产品 →</button>
+<div id="app">
+  <div class="topbar">
+    <div class="brand">华泰财产保险</div>
+    <div>
+      <button class="bgmbtn on" id="bgmBtn" onclick="toggleBGM()">🎵 背景</button>
+      <button class="audiobtn on" id="audioBtn" onclick="toggleAudio()">🔊 讲解</button>
+    </div>
   </div>
+  <div id="content"></div>
+  <div class="footer">宜家安馨—福 · 燃气综合险</div>
 </div>
-
-<!-- 1. 产品介绍 -->
-<div class="page" id="page-cp-intro">
-  <h2>🔥 什么是宜家安馨—福？</h2>
-  <p>宜家安馨—福是<b>华泰财产保险有限公司</b>承保的<b>家用燃气综合保险</b>，专门针对使用天然气的家庭用户设计。</p>
-  <div class="note">
-    <strong>保障范围：</strong><br>
-    ✅ 燃气事故导致的人身伤亡（含意外身故/伤残）<br>
-    ✅ 燃气事故导致的财产损失（房屋、装潢、室内财产）<br>
-    ✅ 第三者责任（对邻居造成的人身/财产损失）<br>
-    ✅ 可选：水暖管破裂、电路起火、自然灾害等
-  </div>
-  <p style="color:#8a7e68;font-size:14px;margin-top:12px">保险期限：一年 · 保费一次性缴清</p>
-  <button class="btn" onclick="go('cp-table')">查看ABCD四款 →</button>
-</div>
-
-<!-- 2. ABCD对比表 -->
-<div class="page" id="page-cp-table">
-  <h2>📋 四款方案对比</h2>
-  <table class="table">
-    <tr><th>保障项目</th><th>A款</th><th>B款</th><th>C款</th><th>D款</th></tr>
-    <tr><td>房屋及装潢</td><td>10万</td><td>20万</td><td>80万</td><td>100万</td></tr>
-    <tr><td>室内财产</td><td>5万</td><td>10万</td><td>30万</td><td>50万</td></tr>
-    <tr><td>第三者责任</td><td>5万</td><td>10万</td><td>20万</td><td>30万</td></tr>
-    <tr><td>意外身故/医疗</td><td>1万</td><td>2万</td><td>5万</td><td>10万</td></tr>
-    <tr><td><b>总保额</b></td><td><b>21万</b></td><td><b>42万</b></td><td><b>135万</b></td><td><b>190万</b></td></tr>
-    <tr><td><b>保费（1年）</b></td><td><b>60元</b></td><td><b>80元</b></td><td><b>100元</b></td><td><b>150元</b></td></tr>
-  </table>
-  <div class="note">
-    <strong>多保优惠：</strong><br>
-    📌 2年保费 ≈ 1年×1.9折<br>
-    📌 3年保费 ≈ 1年×2.7折
-  </div>
-  <button class="btn" onclick="go('cp-duty')">保险责任详解 →</button>
-</div>
-
-<!-- 3. 保险责任 -->
-<div class="page" id="page-cp-duty">
-  <h2>📄 保险责任</h2>
-  <div class="note" style="margin-bottom:8px">
-    <strong>① 火灾爆炸保障</strong><br>
-    因燃气泄漏引发的火灾、爆炸导致的人身伤亡和财产损失
-  </div>
-  <div class="note" style="margin-bottom:8px">
-    <strong>② 水暖管破裂</strong><br>
-    自家或邻居水暖管爆裂导致的水渍损失
-  </div>
-  <div class="note" style="margin-bottom:8px">
-    <strong>③ 电路起火</strong><br>
-    因用电不当引发的火灾导致的损失
-  </div>
-  <div class="note" style="margin-bottom:8px">
-    <strong>④ 自然灾害</strong><br>
-    暴风、暴雨、雷击等自然灾害导致的家财损失
-  </div>
-  <button class="btn" onclick="go('cp-policy')">投保单 & 保单获取 →</button>
-</div>
-
-<!-- 4. 投保单 & 保单 -->
-<div class="page" id="page-cp-policy">
-  <h2>📋 投保单原件</h2>
-  <div style="background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:16px;margin:12px 0">
-    <p style="font-size:14px;text-align:center;color:#8a7e68">投保单（点按可放大查看）</p>
-    <p style="font-size:14px;text-align:center;color:#8a7e68;margin-top:8px">—— 数据以投保单原件为准 ——</p>
-  </div>
-  <p style="font-size:14px;color:#c0b498"><strong>保单获取途径：</strong></p>
-  <ol style="color:#d4c8b0;font-size:14px;padding-left:20px;margin:8px 0">
-    <li>扫码缴费成功后下载电子保单</li>
-    <li>短信链接下载电子保单</li>
-    <li>山东港华3.0系统查询</li>
-    <li>华泰财险微信小程序查询</li>
-    <li>拨打95509热线查询</li>
-  </ol>
-  <button class="btn" onclick="go('quiz')">开始问答 →</button>
-</div>
-
-<!-- 5. 问答 -->
-<div class="page" id="page-quiz">
-  <h2>🎯 产品知识问答</h2>
-  <p id="quiz-question" style="font-size:18px;font-weight:600;color:#f0d9a0;margin:16px 0"></p>
-  <div id="quiz-options"></div>
-  <div id="quiz-feedback" class="feedback"></div>
-  <p id="quiz-progress" style="font-size:13px;color:#8a7e68;text-align:center;margin-top:12px"></p>
-</div>
-
-<!-- 完成 -->
-<div class="page" id="page-end">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">✅</div>
-    <h1>学习完成！</h1>
-    <p style="text-align:center;margin:16px 0">你已经了解了宜家安馨—福的主要保障内容。</p>
-    <p style="text-align:center;color:#c0b498;font-size:14px">回顾产品页或继续学习销售话术</p>
-    <button class="btn" onclick="go('cp-intro')" style="margin-top:20px">🔄 重新学习</button>
-  </div>
-</div>
-
 <script>
-let quizIdx = 0;
-const quiz = [
-  {q:'家财险的保险责任包括以下哪项？',o:['房屋及装潢','车辆损失','股票基金'],a:0},
-  {q:'保险标的有哪些？',o:['房屋和车辆','房屋和金银珠宝','房屋和室内财产'],a:2},
-  {q:'民用燃气险保险责任包括以下哪项？',o:['燃气火灾爆炸','酒后驾车','交通事故'],a:0},
-  {q:'以下哪种情况属于火灾的定义？',o:['意外失火','故意纵火','正常烹饪'],a:0},
-  {q:'爆炸分哪两种类型？',o:['物理爆炸和化学爆炸','大爆炸和小爆炸','燃气爆炸和电器爆炸'],a:0},
-  {q:'以下哪种情况不在理赔范围内？',o:['燃气火灾','自然灾害','故意损坏'],a:2}
-];
+var audioOn=true,bgmOn=true,curBgm=null;
 
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  if(id==='quiz') startQuiz();
+function initBGM(){if(curBgm)return;curBgm=new Audio('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3');curBgm.loop=true;curBgm.volume=0.08;}
+function playBGM(){initBGM();if(!bgmOn||!curBgm)return;curBgm.play().catch(function(){});}
+function stopBGM(){if(curBgm){curBgm.pause();}}
+function toggleBGM(){bgmOn=!bgmOn;var b=document.getElementById('bgmBtn');b.textContent=bgmOn?'🎵 背景':'🎶 静音';b.classList.toggle('on',bgmOn);if(bgmOn)playBGM();else stopBGM();}
+
+function gv(){return new Promise(function(r){var v=window.speechSynthesis.getVoices();if(v.length>0){r(v.find(function(x){return x.lang.startsWith('zh');})||v[0]);}else{window.speechSynthesis.onvoiceschanged=function(){var vv=window.speechSynthesis.getVoices();r(vv.find(function(x){return x.lang.startsWith('zh');})||vv[0]);};}});}
+function speak(t){if(!audioOn||!t||!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='zh-CN';u.rate=0.88;u.pitch=1.0;gv().then(function(v){if(v)u.voice=v;});window.speechSynthesis.speak(u);}
+function stopSpeak(){try{window.speechSynthesis.cancel();}catch(e){}}
+function replayMp3(src){
+  var ap=document.getElementById('ap');
+  if(!ap){
+    ap=document.createElement('audio');
+    ap.id='ap';ap.style.display='none';
+    document.getElementById('app').appendChild(ap);
+  }
+  ap.src=src;ap.volume=0.9;ap.play().catch(function(){});
 }
 
-function startQuiz(){quizIdx=0;showQuiz();}
-function showQuiz(){
-  const q=quiz[quizIdx];
-  document.getElementById('quiz-question').textContent='第'+(quizIdx+1)+'题：'+q.q;
-  const opts=document.getElementById('quiz-options');opts.innerHTML='';
-  q.o.forEach((t,i)=>{
-    const b=document.createElement('button');b.className='btn option';b.textContent=t;
-    b.onclick=()=>checkQuiz(i);opts.appendChild(b);
-  });
-  document.getElementById('quiz-feedback').className='feedback';
-  document.getElementById('quiz-progress').textContent=(quizIdx+1)+'/'+quiz.length;
+function toggleAudio(){audioOn=!audioOn;var b=document.getElementById('audioBtn');b.textContent=audioOn?'🔊 讲解':'🔇 静音';b.classList.toggle('on',audioOn);if(!audioOn)stopSpeak();}
+
+var S={};
+
+// ══════ 1. 产品概览 ══════
+S.start={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_start.mp3',icon:'🔥',title:'宜家安馨—福 · 燃气综合险',
+story:'<p><strong>宜家安馨—福</strong> 是华泰财产保险有限公司专为民用燃气家庭设计的综合保障产品。</p><div class="highlight">✅ 保家人 · 保房屋 · 保邻居<br>✅ 一年100元起，一天不到3毛钱<br>✅ A/B/C/D 四款计划可选</div>',
+audio:'欢迎了解宜家安馨福燃气综合险。四款计划从A款到D款，保额递增，满足不同需求。',
+picks:[{text:'查看四款计划 →',next:'plans',type:''}]};
+
+// ══════ 2. ABCD对比表 ══════
+S.plans={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_plans.mp3',icon:'📊',title:'四款计划 · 保额对照表',
+story:'<div class="prod-box"><table class="prod-table"><tr><th>保险项目</th><th>宜家安馨—福<br>A款</th><th>宜家安馨—福<br>B款</th><th>宜家安馨—福<br>C款</th><th>宜家安馨—福<br>D款</th></tr><tr><td class="rl">保费（一年）</td><td class="hl">100元</td><td class="hl">200元</td><td class="hl">300元</td><td class="hl">400元</td></tr><tr><td class="rl">总保额</td><td class="hl">252万</td><td class="hl">512万</td><td class="hl">795万</td><td class="hl">1403万</td></tr><tr><td class="rl">房屋及附属设备</td><td>50万</td><td>100万</td><td>200万</td><td>280万</td></tr><tr><td class="rl">室内装潢</td><td>20万</td><td>30万</td><td>50万</td><td>80万</td></tr><tr><td class="rl">家庭第三者责任</td><td>10万</td><td>25万</td><td>55万</td><td>60万</td></tr><tr><td class="rl">意外身故/伤残</td><td>50万/人</td><td>75万/人</td><td>10万/人</td><td>20万/人</td></tr><tr><td class="rl">意外医疗</td><td>4万/人</td><td>8万/人</td><td>12万/人</td><td>15万/人</td></tr><tr><td class="rl">附加盗抢保险</td><td>—</td><td>8万</td><td>9万</td><td>12万</td></tr><tr><td class="rl">家庭援助金</td><td>20万</td><td>—</td><td>—</td><td>40万</td></tr></table></div><div class="tip">保险期限：一年，保费一次性缴清<br>A款多保优惠：两年190元 / 三年270元</div>',
+audio:'四款计划从A款100元到D款400元。A款总保额252万，B款512万，C款795万，D款1403万。',
+picks:[{text:'接下来：保险责任介绍 →',next:'duty_intro',type:''}]};
+
+// ══════ 3. 保险责任介绍 ══════
+S.duty_intro={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty_intro.mp3',icon:'✅',title:'保险责任介绍',
+story:'<p><strong>宜家安馨—福</strong> 保障什么？以下从四个方面逐项介绍。</p>',
+audio:'宜家安馨福的保险责任分为四个部分：家财险责任、民用燃气责任、火灾爆炸定义和保障范围。',
+picks:[{text:'① 家财险保险责任 →',next:'duty1',type:''}]};
+
+// 3a. 家财险保险责任
+S.duty1={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty1.mp3',icon:'🏠',title:'一、家财险保险责任',
+story:'<div class="highlight">因以下原因造成保险标的损失，华泰负责赔偿：</div><p><strong>1. 火灾、爆炸</strong><br>因使用民用燃气及其附属设备引起</p><p><strong>2. 自然灾害</strong><br>暴雨、暴风、雷击、台风、龙卷风、洪水、雹灾、雪灾、泥石流等（注：地震海啸除外）</p><p><strong>3. 空中坠物</strong><br>空中运行物体坠落，或保险房屋外的建筑物倒塌</p><p><strong>4. 管道爆裂</strong><br>保险房屋内或邻居家管道突然破裂，造成水暖管本身及室内装修损失</p>',
+audio:'家财险保险责任包括四种：火灾爆炸、自然灾害、空中坠物和管道爆裂。注意地震海啸属于除外责任不赔。',
+picks:[{text:'继续：② 民用燃气险保险责任 →',next:'duty2',type:''}]};
+
+// 3b. 民用燃气险责任
+S.duty2={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty2.mp3',icon:'🔥',title:'二、民用燃气险保险责任',
+story:'<div class="highlight">使用民用燃气及其附属设备引起以下事故，华泰负责赔偿：</div><p><strong>🔥 火灾</strong><br>使用民用燃气引起火灾，造成房屋、装修、财产损失</p><p><strong>💥 爆炸</strong><br>燃气设备发生爆炸，包括物理性爆炸和化学性爆炸</p><p><strong>💨 泄漏</strong><br>民用燃气泄漏造成的直接损失和次生灾害</p><div class="tip">必须与<strong>民用燃气</strong>使用相关。工商业用气不在此范围。</div>',
+audio:'民用燃气险赔三种事故：燃气引起的火灾、燃气爆炸、燃气泄漏。必须是民用燃气使用过程中发生。',
+picks:[{text:'继续：③ 火灾的定义 →',next:'duty3',type:''}]};
+
+// 3c. 火灾定义
+S.duty3={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty3.mp3',icon:'🔥',title:'三、火灾的定义',
+story:'<div class="highlight">保险中的"火灾"需同时满足三个条件：</div><p><strong>① 有燃烧现象</strong><br>有热、有光、有火焰</p><p><strong>② 偶然、意外发生</strong><br>不是故意行为</p><p><strong>③ 失去控制并有蔓延趋势</strong><br>超出正常用火范围</p><div class="tip">💡 正常做饭的灶火不算火灾。灶火失控烧到橱柜才算。</div>',
+audio:'保险中火灾的三个条件：有燃烧现象、偶然意外发生、失去控制并有蔓延趋势。正常做饭不算。',
+picks:[{text:'继续：④ 爆炸的定义 →',next:'duty4',type:''}]};
+
+// 3d. 爆炸定义
+S.duty4={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty4.mp3',icon:'💥',title:'四、爆炸的定义',
+story:'<div class="highlight">爆炸分两种：</div><p><strong>🔧 物理性爆炸</strong><br>液体变为蒸汽或气体膨胀，压力急剧增加超过容器极限压力。例如：管道燃气爆炸、液化气罐爆炸。</p><p><strong>🧪 化学性爆炸</strong><br>物体在瞬息分解或燃烧时放出大量热和气体，以很大压力向四周扩散。例如：火药爆炸、可燃气体爆炸。</p><div class="tip">燃气险涵盖两种爆炸。</div>',
+audio:'爆炸分为物理性爆炸和化学性爆炸。燃气罐爆炸是物理性，燃气泄漏遇明火爆炸是化学性。',
+picks:[{text:'继续：⑤ 保障范围（保险标的）→',next:'duty5',type:''}]};
+
+// 3e. 保障范围
+S.duty5={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_duty5.mp3',icon:'🎯',title:'五、保障范围（保险标的）',
+story:'<div class="highlight">以下四类损失，华泰负责赔偿：</div><p><strong>🏠 房屋及附属设备</strong><br>主体结构、固定水暖、气暖、管道煤气、供电设备、厨房配套设备</p><p><strong>🛋️ 室内装潢</strong><br>地板、墙面、吊顶</p><p><strong>📺 室内财产</strong><br>家用电器、便携电器（电脑/手机）、服装、床上用品、家具、书籍文具</p><p><strong>👥 第三者责任</strong><br>因火灾、爆炸、高空坠物、管道爆裂造成他人伤亡或财产损失</p>',
+audio:'保障范围包括房屋及附属设备、室内装潢、室内财产和第三者责任。室内财产含家电、服装、家具等。',
+picks:[{text:'查看投保单原件 →',next:'form',type:''}]};
+
+// ══════ 4. 投保单原件 ══════
+S.form={icon:'📋',title:'投保单原件',
+story:'<div style="background:#f8f4ec;border-radius:8px;overflow:hidden;margin:10px 0;"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/form_cut.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/form.jpg" style="width:100%;display:block;cursor:pointer;" alt="投保单原件"></a></div><div class="tip">👆 点击图片放大查看</div>',
+audio:'这是投保单原件照片。',
+picks:[{text:'查看保单出处 →',next:'query',type:''}]};
+
+// ══════ 4.5 保单出处查询 ══════
+S.query={icon:'🔍',title:'保单获取途径',
+story:'<div class="highlight"><strong>保单到手，五条途径随时查！</strong></div><ol style="line-height:2.2;padding-left:22px;font-size:14px;"><li>📱 手机端客户<strong>扫码缴费成功后</strong>，可<strong>下载电子保单</strong></li><li>📨 客户缴费成功后收到<strong>短信通知</strong>，点开短信中链接可<strong>下载电子保单</strong></li><li>💻 山东港华<strong>3.0系统</strong>电脑端可<strong>查询电子保单</strong></li><li>📲 用户关注<strong>华泰财险微信小程序</strong>可查询保单</li><li>📞 拨打<strong>华泰财险95509</strong>热线查询保单</li></ol><div style="background:#f8f4ec;border-radius:8px;padding:12px;text-align:center;"><div style="font-size:13px;color:#8a7a68;">🔍 五条途径，随时可查，随时可验</div></div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_query.mp3',
+picks:[{text:'开始交互问答 →',next:'quiz1',type:''}]};
+
+// ══════ 5. 交互问答 ══════
+
+S.quiz1={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz1.mp3',icon:'❓',title:'交互问答 · 第1题',
+question:'家财险的保险责任包括以下哪些？',
+story:'',
+picks:[
+  {text:'火灾爆炸、自然灾害、空中坠物、管道爆裂',next:'q1a',type:'good'},
+  {text:'地震海啸、战争、核辐射',next:'q1b',type:'wrong'}
+]};
+S.q1a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q1a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">家财险保险责任包括：<br>① 火灾、爆炸<br>② 暴雨、台风、洪水等自然灾害<br>③ 空中运行物体坠落<br>④ 管道突然破裂造成的水暖管损失</div>',
+audio:'正确。家财险责任包括火灾爆炸、自然灾害、空中坠物和管道爆裂。',
+picks:[{text:'下一题 →',next:'quiz2',type:''}]};
+S.q1b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q1b.mp3',icon:'❌',title:'回答错误',
+story:'<div class="highlight">地震海啸、战争、核辐射属于<strong>除外责任</strong>。<br><br>正确答案：火灾爆炸、自然灾害、空中坠物、管道爆裂</div>',
+audio:'错误。地震海啸战争核辐射是除外责任不赔。正确的家财险责任是火灾爆炸、自然灾害、空中坠物和管道爆裂。',
+picks:[{text:'重新回答',next:'quiz1',type:''}]};
+
+S.quiz2={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz2.mp3',icon:'❓',title:'交互问答 · 第2题',
+question:'民用燃气险的保险责任是什么？',
+story:'',
+picks:[
+  {text:'燃气引起的火灾、燃气爆炸、燃气泄漏',next:'q2a',type:'good'},
+  {text:'任何火灾都赔',next:'q2b',type:'wrong'},
+  {text:'只赔燃气泄漏',next:'q2b',type:'wrong'}
+]};
+S.q2a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q2a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">民用燃气险保险责任：<br>🔥 燃气引起的火灾<br>💥 燃气爆炸（物理+化学）<br>💨 燃气泄漏</div>',
+audio:'正确。燃气险赔三种：燃气火灾、燃气爆炸、燃气泄漏。',
+picks:[{text:'下一题 →',next:'quiz3',type:''}]};
+S.q2b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q2b.mp3',icon:'❌',title:'回答错误',
+story:'<div class="highlight">正确答案：燃气引起的火灾、燃气爆炸、燃气泄漏。必须与民用燃气使用相关。</div>',
+audio:'正确答案是燃气火灾、燃气爆炸、燃气泄漏。必须与民用燃气使用相关。',
+picks:[{text:'重新回答',next:'quiz2',type:''}]};
+
+S.quiz3={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz3.mp3',icon:'❓',title:'交互问答 · 第3题',
+question:'保险标的（保什么）包括哪些？',
+story:'',
+picks:[
+  {text:'房屋、室内装潢、室内财产、第三者责任',next:'q3a',type:'good'},
+  {text:'房屋和金银珠宝',next:'q3b',type:'wrong'},
+  {text:'所有个人物品',next:'q3b',type:'wrong'}
+]};
+S.q3a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q3a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">保险标的：<br>🏠 房屋及附属设备（水暖、管道燃气等）<br>🛋️ 室内装潢（地板、墙面、吊顶）<br>📺 室内财产（家电、服装、家具、书籍）<br>👥 第三者责任</div>',
+audio:'正确。保险标的分四类：房屋、室内装潢、室内财产和第三者责任。',
+picks:[{text:'下一题 →',next:'quiz4',type:''}]};
+S.q3b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q3b.mp3',icon:'❌',title:'回答错误',
+story:'<div class="highlight">正确答案：房屋（含附属设备）、室内装潢、室内财产（家电/家具/服装等）、第三者责任。</div>',
+audio:'正确答案是房屋、室内装潢、室内财产和第三者责任。',
+picks:[{text:'重新回答',next:'quiz3',type:''}]};
+
+S.quiz4={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz4.mp3',icon:'❓',title:'交互问答 · 第4题',
+question:'保险中"火灾"的3个条件是什么？',
+story:'',
+picks:[
+  {text:'有燃烧 + 意外发生 + 失控蔓延',next:'q4a',type:'good'},
+  {text:'有烟有火 + 烧到东西',next:'q4b',type:'wrong'}
+]};
+S.q4a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q4a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">火灾三条件：<br>① 有热有光有火焰（有燃烧现象）<br>② 偶然意外发生（非故意）<br>③ 失去控制蔓延扩大</div><div class="tip">正常做饭灶火不算。灶火失控烧到橱柜才算火灾。</div>',
+audio:'正确。火灾三条件：有燃烧、意外发生、失控蔓延。',
+picks:[{text:'下一题 →',next:'quiz5',type:''}]};
+S.q4b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q4b.mp3',icon:'❌',title:'回答错误',
+story:'<div class="highlight">正确答案：① 有燃烧（热光火焰）② 意外发生 ③ 失控蔓延。三个缺一不可。</div>',
+audio:'正确答案是三个条件：有燃烧、意外发生、失控蔓延。',
+picks:[{text:'重新回答',next:'quiz4',type:''}]};
+
+S.quiz5={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz5.mp3',icon:'❓',title:'交互问答 · 第5题',
+question:'爆炸分哪两种？',
+story:'',
+picks:[
+  {text:'物理性爆炸 + 化学性爆炸',next:'q5a',type:'good'},
+  {text:'大爆炸 + 小爆炸',next:'q5b',type:'wrong'},
+  {text:'室外爆炸 + 室内爆炸',next:'q5b',type:'wrong'}
+]};
+S.q5a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q5a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">两种爆炸：<br>🔧 物理性爆炸 — 气体膨胀超过容器极限（如液化气罐）<br>🧪 化学性爆炸 — 瞬间分解燃烧放出大量热（如可燃气爆炸）</div><div class="tip">燃气险两种都赔。</div>',
+audio:'正确。物理性爆炸如液化气罐超压，化学性爆炸如燃气泄漏遇明火。两种都赔。',
+picks:[{text:'下一题 →',next:'quiz6',type:''}]};
+S.q5b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q5b.mp3',icon:'❌',title:'回答错误',
+story:'<div class="highlight">正确答案：物理性爆炸（管道/气罐超压）和化学性爆炸（可燃气瞬间燃烧）。</div>',
+audio:'正确答案：物理性爆炸和化学性爆炸。',
+picks:[{text:'重新回答',next:'quiz5',type:''}]};
+
+S.quiz6={sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_quiz6.mp3',icon:'❓',title:'交互问答 · 第6题',
+question:'以下哪些情况燃气险不赔？',
+story:'',
+picks:[
+  {text:'战争、核辐射、地震海啸、故意行为',next:'q6a',type:'good'},
+  {text:'忘关火烧厨房',next:'q6b',type:'wrong'},
+  {text:'燃气泄漏爆炸',next:'q6b',type:'wrong'}
+]};
+S.q6a={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q6a.mp3',icon:'✅',title:'回答正确',
+story:'<div class="highlight">除外责任（不赔）：<br>⚠️ 战争、军事行动<br>⚠️ 核辐射、核污染<br>⚠️ 地震、海啸<br>⚠️ 故意行为</div>',
+audio:'正确。战争、核辐射、地震海啸、故意行为不赔。',
+picks:[{text:'查看学习总结 →',next:'end',type:''}]};
+S.q6b={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_q6b.mp3',icon:'❌',title:'回答错误',
+story:'<p>忘关火和燃气泄漏爆炸属于<strong>意外事故</strong>，赔！</p><div class="highlight">不赔的是：战争、核辐射、地震海啸、故意行为。</div>',
+audio:'忘关火和燃气泄漏爆炸是意外事故可以赔。战争核辐射地震故意行为不赔。',
+picks:[{text:'重新回答',next:'quiz6',type:''}]};
+
+// 完成
+S.end={
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/cp_end.mp3',icon:'✅',title:'学习完成',
+story:'<p>你已经掌握了以下知识：</p><div class="tip">✅ 四款计划对比<br>✅ 家财险保险责任<br>✅ 民用燃气险保险责任<br>✅ 火灾/爆炸定义<br>✅ 保障范围（保险标的）<br>✅ 除外责任</div><p>现在可以自信地向客户介绍产品了。💪</p>',
+audio:'恭喜你完成学习。现在你可以自信地向客户介绍宜家安馨福产品了。',
+picks:[{text:'从头学一遍',next:'start',type:''}]};
+
+// ══════ 渲染引擎 ══════
+function go(id,noAudio){
+  stopSpeak();
+  var s=S[id];if(!s)return;
+  var c=document.getElementById('content');
+  var h='<div class="fade">';
+  if(s.icon)h+='<div class="si">'+s.icon+'</div>';
+  if(s.title)h+='<div class="st">'+s.title+'</div>';
+  h+='<div class="story">'+s.story+'</div>';
+  if(s.question)h+='<div class="qt">'+s.question+'</div>';
+  if(s.picks&&s.picks.length>0){
+    if(!s.question)h+='<div class="qt">点击继续</div>';
+    h+='<div class="choices">';
+    for(var i=0;i<s.picks.length;i++)h+='<button class="cbtn" onclick="pick(\''+id+'\','+i+')">'+s.picks[i].text+'</button>';
+    h+='</div>';
+  }
+  h+='</div>';
+  c.innerHTML=h;
+  playBGM();
+  if(!noAudio&&s.sceneMp3){
+    var ap=document.getElementById('ap');
+    if(!ap){
+      ap=document.createElement('audio');
+      ap.id='ap';ap.style.display='none';
+      document.getElementById('app').appendChild(ap);
+    } else {
+      ap.pause();
+      ap.currentTime=0;
+    }
+    ap.src=s.sceneMp3;ap.volume=0.9;
+    ap.play().catch(function(){});
+  } else if(!noAudio&&s.audio){
+    setTimeout(function(){speak(s.audio);},400);
+  }
 }
-function checkQuiz(i){
-  const fb=document.getElementById('quiz-feedback');
-  if(i===quiz[quizIdx].a){
-    fb.className='feedback good';fb.textContent='✅ 正确！';
-    setTimeout(()=>{quizIdx++;if(quizIdx<quiz.length)showQuiz();else go('end');},1000);
-  } else {
-    fb.className='feedback bad';fb.textContent='❌ 再想想，正确答案是：'+quiz[quizIdx].o[quiz[quizIdx].a];
-    setTimeout(()=>{fb.className='feedback';},2000);
+function pick(id,idx){
+  var s=S[id];
+  var btns=document.querySelectorAll('.cbtn');
+  for(var i=0;i<btns.length;i++)btns[i].classList.add('disabled');
+  if(s.picks[idx].next&&S[s.picks[idx].next]){
+    var nid=s.picks[idx].next;
+    // 在用户手势内立即开始播放下一个场景的音频（不走setTimeout，否则移动端会阻止）
+    if(S[nid].sceneMp3){
+      var ap=document.getElementById('ap');
+      if(!ap){
+        ap=document.createElement('audio');
+        ap.id='ap';ap.style.display='none';
+        document.getElementById('app').appendChild(ap);
+      } else {
+        ap.pause();
+        ap.currentTime=0;
+      }
+      ap.src=S[nid].sceneMp3;ap.volume=0.9;
+      ap.play().catch(function(){});
+    }
+    setTimeout(function(){go(nid,1);},500);
   }
 }
 
-// BGM
-const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
-bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+// 启动页
+document.getElementById('content').innerHTML=
+  '<div class="splash" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;">'+
+  '<div style="font-size:48px;margin-bottom:8px;">🔥</div>'+
+  '<h1 style="font-size:24px;margin-bottom:4px;color:#2a221a;">宜家安馨—福</h1>'+
+  '<h2 style="font-size:17px;margin-bottom:4px;color:#6a5c4c;">家庭燃气综合险</h2>'+
+  '<div style="color:#b0a898;font-size:13px;line-height:1.6;margin-bottom:24px;">华泰财产保险<br>产品介绍 → 保险责任 → 交互问答</div>'+
+  '<button class="splash-btn" style="background:#c0392b;color:#fff;border:none;padding:14px 44px;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;font-family:inherit;" onclick="go(\'start\')">开始学习</button>'+
+  '<div style="color:#b0a898;font-size:12px;margin-top:16px;">🎵 古筝背景 · 🔊 语音讲解</div>'+
+  '</div>';
 </script>
 </body>
 </html>

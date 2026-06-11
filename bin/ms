@@ -1,0 +1,37 @@
+#!/bin/bash
+# ms - Meilisearch 记忆搜索
+# 用法: ms <关键词>
+
+if [ -z "$*" ]; then
+  echo "用法: ms <搜索关键词>"
+  exit 1
+fi
+
+python3 << 'PYTHON'
+import json, urllib.request, sys
+
+query = sys.argv[1] if len(sys.argv) > 1 else ""
+
+data = json.dumps({"q": query, "limit": 5}).encode()
+req = urllib.request.Request("http://127.0.0.1:7700/indexes/memory/search",
+                             data=data,
+                             headers={"Content-Type": "application/json"},
+                             method="POST")
+
+try:
+    resp = urllib.request.urlopen(req, timeout=5)
+    d = json.loads(resp.read())
+    hits = d.get("hits", [])
+    if not hits:
+        print("❌ 没找到相关记忆")
+    else:
+        print(f"🔍 找到 {len(hits)} 条相关记忆:\n")
+        for i, h in enumerate(hits, 1):
+            t = h.get("title", "?")
+            c = h.get("content", "")[:250].replace("\n", " ").strip()
+            print(f"{i}. 📄 {t}")
+            print(f"   {c}")
+            print()
+except Exception as e:
+    print(f"❌ 搜索失败: {e}")
+PYTHON

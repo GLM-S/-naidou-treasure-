@@ -1,0 +1,16 @@
+{
+  "name": "cos-vector-hook",
+  "version": "1.0.0",
+  "description": "COS Vector Hook — 每次对话前从 COS 向量桶检索相关知识注入到 system prompt",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
+  "openclaw": {
+    "extensions": ["./index.js"]
+  }
+}

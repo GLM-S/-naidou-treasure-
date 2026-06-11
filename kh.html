@@ -2,158 +2,262 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>宜家安馨—福 · 销售话术</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>燃气险 · 销售话术</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
-.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
-.page.active{display:flex}
-h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px}
-h2{font-size:20px;color:#f0d9a0;margin-bottom:12px}
-p{color:#d4c8b0;margin-bottom:12px}
-.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
-.btn:active{background:#b8922e;transform:scale(0.97)}
-.qa-item{background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:12px 16px;margin:8px 0;cursor:pointer}
-.qa-item .q{color:#f0d9a0;font-weight:500}
-.qa-item .a{color:#d4c8b0;font-size:14px;margin-top:6px;display:none;line-height:1.5}
-.qa-item.open .a{display:block}
-.tag{background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;display:inline-block;margin-bottom:8px}
-.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
-.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#f5f0e8 0%,#e8e0d0 100%);min-height:100vh;color:#3a3228;}
+#app{max-width:480px;margin:0 auto;min-height:100vh;padding:16px;position:relative;}
+.scene{animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* splash */
+.splash{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;text-align:center;}
+.splash-icon{font-size:60px;margin-bottom:20px;}
+.splash h1{font-size:22px;font-weight:700;color:#3a3228;margin-bottom:8px;}
+.splash p{font-size:14px;color:#8a7a68;margin-bottom:24px;line-height:1.6;}
+.splash-btn{background:#8b3a2a;color:#fff;border:none;padding:12px 32px;border-radius:24px;font-size:16px;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(139,58,42,0.3);}
+
+/* header */
+.hdr{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.hdr .ic{font-size:28px;line-height:1;}
+.hdr .tt{font-size:16px;font-weight:600;color:#3a3228;flex:1;}
+
+/* story bubbles */
+.speech-bubble{background:#fff;border-radius:12px;padding:14px;margin:10px 0;line-height:1.8;font-size:14px;box-shadow:0 1px 3px rgba(0,0,0,.06);position:relative;}
+.speech-bubble::before{content:'';position:absolute;top:-6px;left:18px;width:12px;height:12px;background:#fff;transform:rotate(45deg);}
+.tag{display:inline-block;background:#8b3a2a;color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-bottom:6px;font-weight:600;}
+.strategy-box{background:#f5efe4;border-left:3px solid #8b3a2a;padding:10px 12px;margin:10px 0;border-radius:0 6px 6px 0;font-size:13px;line-height:1.6;}
+strong{color:#8b3a2a;font-weight:600;}
+.story p{margin-bottom:10px;line-height:1.8;font-size:14px;}
+
+/* buttons */
+.btn{display:block;width:100%;background:#fff;border:1.5px solid #d0c8b8;border-radius:10px;padding:12px 16px;font-size:14px;cursor:pointer;font-family:inherit;color:#3a3228;text-align:left;margin:6px 0;min-height:44px;}
+.btn:active{transform:scale(.98);border-color:#8b3a2a;background:#faf7f2;}
+.btn.g{border-color:#5a8a5a;background:#f0f5ec;}
+.btn.w{border-color:#b05050;background:#fcf0f0;}
+.btn-group{margin-top:16px;padding-bottom:40px;}
+
+/* listen btn */
+.ln-btn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;margin-top:6px;}
+.ln-btn:active{background:rgba(0,0,0,.04);}
+
+/* QA */
+.qa-card{background:#fff;border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.qa-q{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;font-size:14px;font-weight:500;min-height:44px;user-select:none;}
+.qa-q .x{font-size:18px;color:#8a7a68;transition:transform .2s;flex-shrink:0;margin-left:8px;}
+.qa-q .x.o{transform:rotate(45deg);}
+.qa-a{display:none;padding:0 14px 12px;border-top:1px solid #f0ece4;}
+.qa-a.o{display:block;}
+
+/* quiz feedback */
+.fb-box{background:#fff;border-radius:10px;padding:14px;margin:12px 0;line-height:1.7;font-size:14px;border-left:3px solid #5a8a5a;}
+.fb-box.wr{border-left-color:#b05050;}
+
+/* result */
+.end-box{text-align:center;padding:40px 0;line-height:2;font-size:15px;}
+.end-box .big{font-size:40px;margin-bottom:10px;}
+
+#ap{display:none;}
 </style>
 </head>
 <body>
-
-<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
-<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
-
-<!-- 封面 -->
-<div class="page active" id="page-cover">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">💬</div>
-    <h1>销售话术</h1>
-    <p style="text-align:center;margin:16px 0;color:#c0b498">宜家安馨—福 · 燃气险销售必备</p>
-    <button class="btn start-btn" onclick="go('prepare')" style="padding:18px 36px;font-size:20px;border-radius:12px">开始学习话术 →</button>
-  </div>
-</div>
-
-<!-- 入户前准备 -->
-<div class="page" id="page-prepare">
-  <h2>📌 入户安检前的准备</h2>
-  <div class="note">
-    在入户安检前做好准备，了解常见的异议问题，一遍遍应答，以便便于应答。客户怎么说都不慌，自然引导。
-  </div>
-  <button class="btn" onclick="go('general')">一般化款话术 →</button>
-  <button class="btn" onclick="go('special')">特别款话术 →</button>
-  <button class="btn" onclick="go('qa')" style="background:transparent;border:1px solid #c9a84c;color:#f0d9a0">📋 常见问题 →</button>
-</div>
-
-<!-- 一般化款话术 -->
-<div class="page" id="page-general">
-  <h2>💳 一般化款话术</h2>
-  <p style="color:#8a7e68;font-size:14px;margin-bottom:8px">适用：安检完毕指出安全隐患后</p>
-  <div class="note" style="font-size:15px;line-height:1.8">
-    <p style="margin-bottom:8px">"顺便说一下，系统显示您家还没有办理燃气保障，因临近用气高峰目前事故频发，政府要求我们燃气公司要家家户户通知到，办理自愿不强制。"</p>
-    <p style="margin-bottom:8px">"费用的话也不高，一天2毛7一个月8块多，主要针对使用天然气造成的财产和人身损失。"</p>
-    <p style="margin-bottom:8px">"打个比方说——做饭忘记关火它赔、邻居家使用天然气不当引发的事故波及到咱家财产损失也是赔的。"</p>
-    <p>"我现在可以给您办理，按年投保，现在有100/年及190/2年的，您看您是微信、支付宝还是现金？"</p>
-  </div>
-  <button class="btn" onclick="go('special')">查看特别款话术 →</button>
-  <button class="btn" onclick="go('qa')" style="background:transparent;border:1px solid #c9a84c;color:#f0d9a0">📋 常见问题 →</button>
-</div>
-
-<!-- 特别款话术 -->
-<div class="page" id="page-special">
-  <h2>⭐ 特别款话术</h2>
-  <p style="color:#8a7e68;font-size:14px;margin-bottom:8px">适用：系统查到已脱保的用户</p>
-  <div class="note" style="font-size:15px;line-height:1.8">
-    <p style="margin-bottom:8px">"我刚才在系统里查到您的燃气安全保障已经脱保了，我给您写个单子续上，您是现金还是微信？"</p>
-    <p style="margin-bottom:8px">"不仅保障燃气事故，水电暖、自然灾害全都保。"</p>
-    <p style="margin-bottom:8px">"如同合作医疗——我们不用但是必须要有，因为风险的不确定性。身边的邻居都有配置，像忘记关火导致的燃气火灾、电器使用不当导致的起火、水暖管爆裂把自家或楼下泡了、暴风暴雨导致的漏水，都可以保障。"</p>
-    <p>"一年100元只保障燃气，两年190三年270不仅保燃气还保障全屋的水电气暖，一天不到2毛7分钱。微信支付宝都可以付款，很方便。"</p>
-  </div>
-  <button class="btn" onclick="go('qa')">📋 常见问题应答 →</button>
-</div>
-
-<!-- 常见问题 -->
-<div class="page" id="page-qa">
-  <h2>📋 常见问题 · 13问</h2>
-  <p style="color:#8a7e68;font-size:14px;margin-bottom:12px">点开查看专业话术应答</p>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "这个东西是什么？我没听说过"</div>
-    <div class="a">这是华泰财险的燃气综合险，专门保燃气事故的。咱们这边大部分用户都办了，一年才100块钱，一天不到3毛钱，万一出事保全家。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "太贵了，不需要"</div>
-    <div class="a">一天2毛7，一个月8块多。万一出事，少则几万多则上百万。相当于每天少吃一口饭，买一份安心。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "我已经买了家财险"</div>
-    <div class="a">普通家财险不保燃气事故，这个是专门针对燃气泄漏、火灾、爆炸的专项保障。跟家财险互补，不是重复。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "出了事能赔多少？"</div>
-    <div class="a">A款21万到D款190万不等，具体看您选哪款。像C款房屋装潢保80万、室内财产30万、第三者责任20万，一般家庭完全够用。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "我考虑考虑"</div>
-    <div class="a">理解，您先想想。不过今天办的话马上生效，风险不等人。要不我先给您办上，回去看看不合适再退也行。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "你们是哪个公司的？靠谱吗"</div>
-    <div class="a">华泰财产保险有限公司，国家金融监督管理总局批准成立，全国性保险公司，您随时可以查资质。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "只保燃气吗？别的管不管"</div>
-    <div class="a">特别款不仅保燃气，还包括水暖管破裂、电路起火、暴风暴雨等自然灾害。全屋水电暖都管。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "怎么理赔？麻烦不"</div>
-    <div class="a">出险打95509报案，客服全程指导。材料齐全的话，小额理赔3-5个工作日到账，不麻烦。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "家里没人住，不用买"</div>
-    <div class="a">燃气总阀关了没事，但万一邻居家燃气泄漏爆炸波及到您家，没有保险一样受损失。而且您不在家的时候管道老化更没人发现。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "我租房住"</div>
-    <div class="a">租房也一样可以投保，保的是使用燃气的地址，跟房东是谁没关系。一年100块，住得安心。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "去年买了没出事，白花钱"</div>
-    <div class="a">没出事是好事！保险就是这样——我们都希望白花钱，说明平安无事。真出事那天，您不会觉得白花了。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "小区统一买了"</div>
-    <div class="a">小区统一买的一般是公众责任险或家财险，不保燃气专项。您看一下保单上保不保燃气火灾爆炸，不保的话最好再补一份。</div>
-  </div>
-  <div class="qa-item" onclick="this.classList.toggle('open')">
-    <div class="q">❓ "能不能先给个保单看看"</div>
-    <div class="a">当然可以，支付成功后电子保单马上发送到您手机上。您也可以关注华泰财险小程序随时查看，随时能下载。</div>
-  </div>
-  <button class="btn" onclick="go('end')" style="margin-top:16px">✅ 学习完成</button>
-</div>
-
-<!-- 完成 -->
-<div class="page" id="page-end">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">✅</div>
-    <h1>话术学习完成！</h1>
-    <p style="text-align:center;margin:16px 0">你已经掌握了宜家安馨—福的主要销售话术。</p>
-    <p style="text-align:center;color:#c0b498;font-size:14px">入户前复习一下，客户怎么说都不慌。</p>
-    <button class="btn" onclick="go('prepare')" style="margin-top:20px">🔄 重新学习</button>
-  </div>
-</div>
+<div id="app"></div>
 
 <script>
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo(0,0);
+var curBgm=null,bgmOn=1;
+
+function iBgm(){
+  if(curBgm)return;
+  curBgm=new Audio('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3');
+  curBgm.loop=true;curBgm.volume=.15;
 }
-const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
-bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+function pBgm(){iBgm();if(!bgmOn||!curBgm)return;curBgm.play().catch(function(){});}
+function sBgm(){if(curBgm){curBgm.pause();curBgm.currentTime=0;}}
+
+function playMp3(src){
+  var ap=document.getElementById('ap');
+  if(!ap){
+    ap=document.createElement('audio');
+    ap.id='ap';ap.style.display='none';
+    document.getElementById('app').appendChild(ap);
+  }
+  ap.src=src;ap.volume=0.9;ap.play().catch(function(){});
+}
+
+function go(id){
+  if(!id){location.reload();return;}
+  var app=document.getElementById('app');
+  var html='';
+
+  if(id=='start'){
+
+    html='<div class="splash"><div class="splash-icon">📖</div><h1>销售话术 · 入户安检篇</h1><p>学习内容：<br>💳 一般化款话术<br>⭐ 特别款话术<br>📋 13个常见问题应答<br>🎯 5道模拟练习</p><button class="splash-btn" onclick="go(\'old_user\')">开始学习话术 →</button></div>';
+    app.innerHTML=html;
+  // 预加载话术MP3
+    return;
+  }
+
+  if(id=='old_user'){
+    html='<div class="hdr"><span class="ic">💳</span><span class="tt">场景一：一般化款话术</span></div>';
+    html+='<div class="story"><p><strong>主推一般款时的开口话术：</strong></p>';
+    html+='<div class="speech-bubble"><span class="tag">话术顺序</span><strong>① 指出安全隐患：</strong>"我检查了一下，发现您家这个燃气胶管有点老化了，建议及时更换。平时用气注意保持通风，用完关好阀门。"<br><strong>② 再顺便说出：</strong><span class="tag" style="margin-top:4px;display:inline-block;">引出保险</span>顺便说一下，系统显示您家还没有办理燃气保障，因临近用气高峰目前事故频发，政府要求我们燃气公司要家家户户通知到，办理自愿不强制。费用的话也不高，<strong>一天2毛7一个月8块多</strong>，主要针对使用天然气造成的财产和人身损失。打个比方说<strong>做饭忘记关火它赔、邻居家使用天然气不当引发的事故波及到咱家财产损失也是赔的</strong>。我现在可以给您办理，按年投保，现在有<strong>100/年及190/2年</strong>的，您看您是微信、支付宝还是现金？</div></div>';
+    html+='<button class="ln-btn" onclick="playMp3(\'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh1.mp3\')">🔊 听讲解</button>';
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'new_user\')">继续：特别款话术 →</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh1.mp3');
+  }
+
+  if(id=='new_user'){
+    html='<div class="hdr"><span class="ic">⭐</span><span class="tt">场景二：特别款话术</span></div>';
+    html+='<div class="story"><p><strong>主推特别款时的开口话术：</strong></p>';
+    html+='<div class="speech-bubble"><span class="tag">话术顺序</span><strong>① 先讲安全：</strong>"我帮您检查了一下燃气设备，整体情况还好，就是注意软管不要超过两年，用完一定关好阀门。"<br><strong>② 再顺便说出：</strong><span class="tag" style="margin-top:4px;display:inline-block;">引出保险</span>我刚才在系统里查到您的燃气安全保障已经脱保了，我给您写个单子续上。您是现金还是微信？不仅保障燃气事故，水电暖、自然灾害全都保。如同合作医疗，我们不用但是必须要有，因为风险的不确定性。身边的邻居都有配置，像<strong>忘记关火导致的燃气火灾，电器使用不当导致的起火，水暖管爆裂把自家或楼下泡了，暴风暴雨导致的漏水</strong>，都可以保障，国家也要求我们燃气企业给客户做好安全保障。<strong>一年100元只保障燃气，两年190三年270不仅保燃气还保障全屋的水电气暖，一天不到2毛7分钱。</strong>为了不脱保，建议咱办个<strong>3年</strong>的，咱好多邻居都办了3年的。微信支付宝都可以付款，很方便。<br><span style="color:#b05050;font-size:13px;">⚠️ 千万不要直接说"燃气保险还没有买，要不要买一份"——要自然引导。</span></div></div>';
+    html+='<button class="ln-btn" onclick="playMp3(\'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh2.mp3\')">🔊 听讲解</button>';
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'qa_intro\')">继续：常见问题 →</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh2.mp3');
+  }
+
+  if(id=='qa_intro'){
+    html='<div class="hdr"><span class="ic">📋</span><span class="tt">常见问题 · 13问</span></div>';
+    html+='<div class="speech-bubble" style="border-left:3px solid #8b3a2a;margin-bottom:12px;font-size:13px;"><strong>📌 入户安检前的准备：</strong><br>在入户安检前做好准备，了解常见的问题，以便便于应答。</div>';
+  html+='<p style="margin-bottom:12px;line-height:1.8;font-size:14px;">入户燃气险销售中最常见的<strong>13个常见问题</strong>，涵盖必要性质疑到性价比疑虑：</p>';
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'qa1_6\')">📋 前6个问题</button><button class="btn" onclick="go(\'qa7_13\')">📋 后7个问题</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_qa_intro.mp3');
+  }
+
+  if(id=='qa1_6'){
+    html='<div class="hdr"><span class="ic">📋</span><span class="tt">常见问题 1-6</span></div>';
+    var qas=qa1_6();
+    for(var i=0;i<qas.length;i++){
+      html+='<div class="qa-card"><div class="qa-q" onclick="tQ(this)"><span>'+qas[i].q+'</span><span class="x">+</span></div><div class="qa-a">'+qas[i].a+'</div></div>';
+    }
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'qa7_13\')">继续：后7个问题 →</button><button class="btn" onclick="go(\'quiz_intro\')">跳过，开始练习 →</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_qa1_6.mp3');
+  }
+
+  if(id=='qa7_13'){
+    html='<div class="hdr"><span class="ic">📋</span><span class="tt">常见问题 7-13</span></div>';
+    var qas2=qa7_13();
+    for(var i=0;i<qas2.length;i++){
+      html+='<div class="qa-card"><div class="qa-q" onclick="tQ(this)"><span>'+qas2[i].q+'</span><span class="x">+</span></div><div class="qa-a">'+qas2[i].a+'</div></div>';
+    }
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'quiz_intro\')">开始模拟练习 →</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_qa7_13.mp3');
+  }
+
+  if(id=='quiz_intro'){
+    html='<div class="hdr"><span class="ic">🎯</span><span class="tt">模拟练习</span></div>';
+    html+='<p style="margin-bottom:12px;line-height:1.8;font-size:14px;">一共<strong>5道选择题</strong>，选完看答案和解析。</p>';
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'quiz1\')">开始第1题 →</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz_intro.mp3');
+  }
+
+  // Quiz scenes
+  var quizMp3={quiz1:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz1.mp3',quiz2:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz2.mp3',quiz3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz3.mp3',quiz4:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz4.mp3',quiz5:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_quiz5.mp3'};
+  var qData=getQuiz(id);
+  if(qData){
+    html='<div class="hdr"><span class="ic">❓</span><span class="tt">'+qData.t+'</span></div>';
+    html+='<p style="margin-bottom:12px;line-height:1.8;font-size:14px;">'+qData.q+'</p>';
+    html+='<div class="btn-group">';
+    for(var i=0;i<qData.opts.length;i++){
+      var c=qData.opts[i].g?' g':' w';
+      var idx=i;html+='<button class="btn'+(qData.opts[idx].g?' g':' w')+'" onclick="showFB(\''+id+'\','+idx+')">'+qData.opts[idx].t+'</button>';
+    }
+    html+='</div><div id="fb"></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3(quizMp3[id]);
+  }
+
+  if(id=='end'){
+    html='<div class="hdr"><span class="ic">🎉</span><span class="tt">全部完成</span></div>';
+    html+='<div class="end-box"><div class="big">🎊</div>你已经完成了全部学习内容！<br><br>💳 一般化款话术<br>⭐ 特别款话术<br>📋 13个常见问题<br>🎯 5道模拟练习<br><br><strong>回到入户安检现场，自信开口吧！</strong></div>';
+    html+='<div class="btn-group"><button class="btn" onclick="go(\'old_user\')">🔄 重新学习</button><button class="btn" onclick="go(\'start\')">🏠 返回首页</button></div>';
+    app.innerHTML=html;window.scrollTo(0,0);pBgm();
+  playMp3('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_end.mp3');
+  }
+}
+
+function tQ(el){
+  var a=el.nextElementSibling;
+  var x=el.querySelector('.x');
+  if(!a||!x)return;
+  var o=a.classList.contains('o');
+  if(o){a.classList.remove('o');x.classList.remove('o');}
+  else{a.classList.add('o');x.classList.add('o');}
+}
+
+function showFB(id,idx){
+  var d=document.getElementById('fb');if(!d)return;
+  var qd=getQuiz(id);if(!qd||!qd.opts[idx])return;
+  var opt=qd.opts[idx];
+  // 播放反馈音频
+  var fbSrc='https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/kh_'+id.replace('quiz','q')+(opt.g?'a':'b')+'.mp3';
+  playMp3(fbSrc);
+  d.innerHTML='<div class="fb-box'+(opt.g?'':' wr')+'">'+opt.fb+'</div>';
+  if(opt.g){
+    var n=getNext(id);
+    if(n) d.innerHTML+='<button class="btn" onclick="go(\''+n+'\')">'+(n=='end'?'全部完成 🎉':'下一题 →')+'</button>';
+  } else {
+    d.innerHTML+='<button class="btn" onclick="go(\''+id+'\')">重新回答</button>';
+  }
+}
+
+function getNext(id){
+  var map={quiz1:'quiz2',quiz2:'quiz3',quiz3:'quiz4',quiz4:'quiz5',quiz5:'end'};
+  return map[id]||null;
+}
+
+function getQuiz(id){
+  var all={
+    quiz1:{t:'练习 · 第1题',q:'客户说："保险没有用，保费白交了。"你该怎么说？',
+      opts:[{t:'「保险就像灭火器，宁可不用不可不备」',g:1,fb:'✅ 对！燃气保障是一种事前的准备……多一份准备就少一份损失。保险就像灭火器，宁可不用，但不可不备。'},
+        {t:'"没关系，您自己考虑就好"',g:0,fb:'❌ 正确回答应突出「事前准备」理念，用"保险就像灭火器"的比喻最有说服力。'}]},
+    quiz2:{t:'练习 · 第2题',q:'客户说："我平时用气很注意，不会出事。"最佳回应是？',
+      opts:[{t:'"邻居燃气事故波及到您怎么办？"',g:1,fb:'✅ 对！自己用气注意也不能保证百分之百不出事。而且邻居事故波及到您，保险公司先赔给您。'},
+        {t:'"您真是安全意识强的好客户"',g:0,fb:'❌ 光夸客户不行，要引出「邻居事故波及」这个关键卖点。'}]},
+    quiz3:{t:'练习 · 第3题',q:'客户问："100/190/270怎么选？哪个划算？"',
+      opts:[{t:'"多数客户选2年或3年升级款，一天不到3毛钱"',g:1,fb:'✅ 对！100基础款只保燃气，190和270升级款保全屋水电气暖。要用「日均成本」对比推动决策。'},
+        {t:'"完全看你预算，每个都挺好的"',g:0,fb:'❌ 要主动引导，不是交给客户自己判断。用日均成本和"大多数客户的选择"推动。'}]},
+    quiz4:{t:'练习 · 第4题',q:'客户说："现在没钱，下次再说。"最佳回应是？',
+      opts:[{t:'"一天不到3毛钱，少喝杯奶茶就有了"',g:1,fb:'✅ 对！用"少喝一杯奶茶"类比化解价格疑虑，强调现场办理便利性。'},
+        {t:'"好的，那下次我再来"',g:0,fb:'❌ 客户说「下次」多数是推脱。要用小成本类比化解疑虑。'}]},
+    quiz5:{t:'练习 · 第5题',q:'客户问："燃气险和家财险有什么区别？"',
+      opts:[{t:'"家财险不含燃气细节，两份都买更全面"',g:1,fb:'✅ 对！讲清互补关系，让客户感受到你的专业度。'},
+        {t:'"两个差不多，买一个就行"',g:0,fb:'❌ 说「差不多」就不专业了。要讲清家财险和燃气险的互补关系。'}]}
+  };
+  return all[id]||null;
+}
+
+function qa1_6(){
+  return [
+    {q:'1. "保险没有用，保费白交了"',a:'<div class="strategy-box"><strong>策略：</strong>突出事前准备，防范万一</div><div class="speech-bubble"><span class="tag">话术</span>燃气保障是一种事前的准备，我们买保险的目的肯定不是为了出事故获得赔偿，而是为了在万一发生事故时有所补偿。多一份准备就少一份损失。<strong>保险就像灭火器，宁可不用，但不可不备。</strong>不怕一万，就怕万一。</div>'},
+    {q:'2. "燃气险是必须买的吗？"',a:'<div class="strategy-box"><strong>策略：</strong>利用从众心理</div><div class="speech-bubble"><span class="tag">话术</span>燃气保障不是必须购买的，但<strong>楼上楼下的邻居基本都买了</strong>。我们还是建议您买一份。毕竟燃气还是比较危险的，万一在用气时不小心出现问题，提前准备一份保障还是很有用的。</div>'},
+    {q:'3. "我平时用气很注意，不会出事"',a:'<div class="strategy-box"><strong>策略：</strong>①巧用案例引导 ②先行赔付，被波及也不怕</div><div class="speech-bubble"><span class="tag">话术</span>燃气的危险性是有目共睹的——自己用气注意，也不能保证百分之百不出事，万一胶管脱落、或家里老人忘记关阀门，都很危险。而且我们的保险还有一个特色：<strong>邻居燃气事故波及到您，而邻居没钱赔，保险公司先赔给您</strong>，您把追偿权转让给保险公司就行。您自己注意，但难保左邻右舍也注意。</div>'},
+    {q:'4. "出事了不该燃气公司负责吗？"',a:'<div class="strategy-box"><strong>策略：</strong>①过失原则 ②保险不纠结责任方</div><div class="speech-bubble"><span class="tag">话术</span>燃气的危险性是大家都知道的，天然气公司也尽到最大的责任进行排查，但谁也不能保证百分百，而且如果是业主使用不规范导致的意外，燃气公司没有责任。如果确实燃气公司安检时发现隐患没有提醒，燃气公司承担相应责任，否则不承担责任。但有了保险，我们不纠结是谁的责任，<strong>保险公司先行赔付，客户只管尽快恢复正常生活</strong>，多一份保险多一份保障。</div>'},
+    {q:'5. "燃气险和家财险有什么区别？"',a:'<div class="strategy-box"><strong>策略：</strong>讲清互补关系</div><div class="speech-bubble"><span class="tag">话术</span>家财险侧重于财产损失的保障，但往往不包含燃气事故、第三者责任等更细致的风险。燃气险聚焦于<strong>燃气相关的事故保障</strong>，包括火灾、爆炸、中毒等。两者互补。很多客户<strong>两份都买了</strong>，全面保障更安心。</div>'},
+    {q:'6. "100/190/270怎么选？哪个划算？"',a:'<div class="strategy-box"><strong>策略：</strong>用日均成本做对比，突出性价比</div><div class="speech-bubble"><span class="tag">话术</span>100的是基础款，只保障燃气事故。190和270的是升级款，不仅保燃气，还保全屋<strong>水电气暖</strong>，还有第三者责任。<strong>一天不到2毛7分钱</strong>，性价比很高。大多数客户选的是<strong>2年或3年的升级款</strong>，保障范围更全面，省心。</div>'}
+  ];
+}
+
+function qa7_13(){
+  return [
+    {q:'7. "为什么是燃气公司来卖保险？"',a:'<div class="strategy-box"><strong>策略：</strong>责任延伸，安全服务</div><div class="speech-bubble"><span class="tag">话术</span>燃气公司在日常入户安检时就有发现隐患的责任，加上政府要求我们做好客户的安全保障，所以我们配合专业的保险公司推出了这项服务。由燃气公司来介绍，一是方便，不用您另外找渠道；二是因为我们更懂燃气安全，<strong>能帮您匹配最合适的保障方案</strong>。</div>'},
+    {q:'8. "出了事找谁理赔？"',a:'<div class="strategy-box"><strong>策略：</strong>讲清流程，打消顾虑</div><div class="speech-bubble"><span class="tag">话术</span>出险后直接<strong>打保险公司电话（保单上有）</strong>，或者找燃气公司客服帮助您报险。只要符合保险责任，理赔流程很顺畅。我们这边也有<strong>真实的理赔案例</strong>，赔付速度很快，客户评价都挺好。</div>'},
+    {q:'9. "我是租户，需要买吗？"',a:'<div class="strategy-box"><strong>策略：</strong>谁使用谁受益</div><div class="speech-bubble"><span class="tag">话术</span>租户也是燃气使用者，同样面临用气风险。而且保险是<strong>跟房子走</strong>的，即使您只是租户，一旦发生燃气事故，您本人和您的财产都在保障范围内。很多房东也要求租户配置这份保障。</div>'},
+    {q:'10. "现在没钱，下次再说"',a:'<div class="strategy-box"><strong>策略：</strong>小成本对比大风险，凸显紧迫性</div><div class="speech-bubble"><span class="tag">话术</span>一年100元，一天不到3毛钱。<strong>少抽一包烟、少喝一杯奶茶的钱</strong>，就能给全家一年的安全保障。万一出了事，损失的可就不止这点保费了。</div>'},
+    {q:'11. "我买过别家保险了"',a:'<div class="strategy-box"><strong>策略：</strong>强调互补和专属性</div><div class="speech-bubble"><span class="tag">话术</span>您之前的保险可能覆盖了燃气责任，但这个是燃气公司<strong>专门针对入户使用燃气的客户定制的</strong>，和燃气使用场景贴合度更高。而且很多保险的燃气责任条款比较笼统，我们这个<strong>覆盖更细、赔付更有针对性</strong>，可以看作对原有保障的补充。</div>'},
+    {q:'12. "考虑一下，下次再说"',a:'<div class="strategy-box"><strong>策略：</strong>强调现场办理的便利性</div><div class="speech-bubble"><span class="tag">话术</span>下次再办还得麻烦您再跑一趟或者再预约上门，不如趁我现在入户<strong>一次性办妥</strong>，省心省力。特别款190的两年保和270的三年保，还省去您年年续保的麻烦。</div>'},
+    {q:'13. "你们是不是有业绩压力才这么卖力？"',a:'<div class="strategy-box"><strong>策略：</strong>坦然承认，转正向引导</div><div class="speech-bubble"><span class="tag">话术</span>说实话，我们确实有安全服务的推广要求。但更重要的是，我们在安检过程中确实发现了很多用气隐患，<strong>真心希望每个家庭都能有份保障</strong>。您办不办都是自愿的，但我建议您认真考虑——看过太多事故案例的人，都知道这份保障的意义。所有的案例都是真的。</div>'}
+  ];
+}
+
+// ══════ 启动 ══════
+go('start');
 </script>
 </body>
 </html>

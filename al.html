@@ -3,137 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>宜家安馨—福 · 理赔案例</title>
+<title>华泰 · 宜家安馨—福 · 理赔案例</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0d0b09;color:#e8dcc8;min-height:100vh;font-size:16px;line-height:1.6}
-.page{display:none;padding:20px;max-width:600px;margin:0 auto;min-height:100vh;flex-direction:column;justify-content:center}
-.page.active{display:flex}
-h1{font-size:28px;color:#f0d9a0;text-align:center;margin-bottom:12px}
-h2{font-size:20px;color:#f0d9a0;margin-bottom:12px}
-p{color:#d4c8b0;margin-bottom:12px}
-.btn{display:block;width:100%;padding:14px;margin:8px 0;background:#c9a84c;color:#1a1410;border:none;border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;transition:.2s}
-.btn:active{background:#b8922e;transform:scale(0.97)}
-.case-card{background:#1a1410;border:1px solid #4a3f30;border-radius:8px;padding:16px;margin:12px 0}
-.case-card .type{font-size:14px;color:#c9a84c;font-weight:600;margin-bottom:4px}
-.case-card .amt{font-size:24px;color:#f0d9a0;font-weight:700;margin:4px 0}
-.case-card .desc{color:#d4c8b0;font-size:14px;line-height:1.6}
-.note{background:#2a2520;border-left:3px solid #c9a84c;padding:10px 14px;margin:12px 0;border-radius:4px;font-size:14px;color:#c0b498}
-.option{background:transparent;border:1.5px solid #c9a84c;color:#f0d9a0;border-radius:8px;padding:12px;margin:6px 0;text-align:left}
-.feedback{padding:12px;border-radius:8px;margin:12px 0;font-size:15px;display:none}
-.feedback.good{background:#2a4a2a;border-left:4px solid #4caf50;display:block}
-.feedback.bad{background:#4a2a2a;border-left:4px solid #f44336;display:block}
-.bgm-btn{position:fixed;top:12px;right:12px;background:rgba(201,168,76,0.3);border:1px solid #c9a84c;color:#f0d9a0;padding:6px 12px;border-radius:20px;font-size:13px;z-index:100;cursor:pointer}
-.tag{display:inline-block;background:#c9a84c;color:#1a1410;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;margin-right:4px}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#f5f0e8;color:#2a221a;font-family:"Noto Serif SC","SimSun",serif;min-height:100vh;display:flex;justify-content:center;padding:16px;}
+#app{max-width:680px;width:100%;min-height:90vh;background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.06);position:relative;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.topbar .brand{font-size:11px;color:#b0a898;letter-spacing:1px;}
+.audiobtn,.bgmbtn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;margin-left:4px;}
+.audiobtn.on{color:#c0392b;border-color:#c0392b;}
+.bgmbtn.on{color:#27ae60;border-color:#27ae60;}
+.si{font-size:32px;text-align:center;margin:6px 0 10px;}
+.st{font-size:13px;color:#c0392b;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+.highlight{background:#fef9e7;border-left:3px solid #c0392b;padding:10px 14px;border-radius:4px;font-size:14px;margin:10px 0;line-height:1.6;}
+.tip{background:#eaf2f8;border-left:3px solid #2980b9;padding:10px 14px;border-radius:4px;font-size:13px;margin:10px 0;line-height:1.6;}
+.story{font-size:15px;line-height:1.8;color:#3a2a1a;margin-bottom:14px;}
+.story p{margin-bottom:8px;}
+.qt{font-size:14px;color:#c0392b;margin-bottom:10px;font-weight:bold;}
+.choices{display:flex;flex-direction:column;gap:8px;}
+.cbtn{background:#f5f0e8;border:1px solid #d0c8b8;color:#2a221a;padding:12px 14px;border-radius:8px;font-size:14px;font-family:inherit;cursor:pointer;text-align:left;line-height:1.4;width:100%;}
+.cbtn:active{background:#e8e0d0;}
+.cbtn.disabled{opacity:0.4;pointer-events:none;}
+.case-box{background:#faf6ef;border:1px solid #e8e0d0;border-radius:10px;padding:14px;margin:10px 0;}
+.case-box .label{display:inline-block;background:#c0392b;color:#fff;font-size:11px;padding:2px 10px;border-radius:4px;margin-bottom:8px;}
+.case-box .item{font-size:14px;line-height:1.6;margin-bottom:4px;}
+.case-box .item strong{color:#c0392b;}
+.case-img{background:#f8f4ec;border-radius:8px;overflow:hidden;margin:10px 0;}
+.case-img img{width:100%;display:block;cursor:pointer;}
+.case-img video{width:100%;display:block;border-radius:6px;}
+.replay-btn{background:transparent;border:1px solid #d0c8b8;color:#6a5c4c;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;}
+.footer{text-align:center;margin-top:16px;font-size:11px;color:#b0a898;}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fi 0.35s ease;}
 </style>
 </head>
 <body>
-
-<button class="bgm-btn" id="bgmBtn">🎵 背景</button>
-<audio id="bgm" loop preload="auto"><source src="https://naidou-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3" type="audio/mpeg"></audio>
-
-<!-- 封面 -->
-<div class="page active" id="page-cover">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">📸</div>
-    <h1>理赔案例</h1>
-    <p style="text-align:center;margin:16px 0;color:#c0b498">用真实案例说话 · 让客户放心</p>
-    <button class="btn" onclick="go('cases')" style="padding:18px 36px;font-size:20px;border-radius:12px">查看案例 →</button>
+<div id="app">
+  <div class="topbar">
+    <div class="brand">华泰 · 宜家安馨—福</div>
+    <div>
+      <button class="bgmbtn on" id="bgmBtn" onclick="toggleBGM()">🎵</button>
+      <button class="audiobtn on" id="audioBtn" onclick="toggleAudio()">🔊</button>
+    </div>
   </div>
+  <div id="content"></div>
+  <div class="footer">理赔案例 · 用事实说话</div>
 </div>
-
-<!-- 真实理赔案例 -->
-<div class="page" id="page-cases">
-  <h2>🔥 真实理赔案例</h2>
-
-  <div class="case-card">
-    <div class="type">🔥 燃气引发火灾</div>
-    <div class="amt">¥2,000</div>
-    <div class="desc">某小区用户家中燃气软管老化泄漏，遇明火引发火灾，厨房烧毁。<br>
-    经审核符合保险责任，赔付房屋装潢及财产损失合计2000元。</div>
-  </div>
-
-  <div class="case-card">
-    <div class="type">💧 水暖管破裂</div>
-    <div class="amt">¥8,600</div>
-    <div class="desc">某小区5楼用户水暖管突然爆裂，水流渗透至4楼邻居家中，造成天花板、墙面受损。<br>
-    属于保险责任，赔付自身及第三者损失合计8600元。</div>
-  </div>
-
-  <div class="case-card">
-    <div class="type">⚡ 电路起火</div>
-    <div class="amt">¥5,000</div>
-    <div class="desc">某用户家中线路老化导致短路起火，卧室家具、电器严重烧毁。<br>
-    经核实属保险责任，赔付室内财产及装潢损失合计5000元。</div>
-  </div>
-
-  <div class="case-card">
-    <div class="type">🌊 暴雨灾害</div>
-    <div class="amt">¥500</div>
-    <div class="desc">某小区因暴雨导致屋顶渗水，室内墙面、地板受损。<br>
-    属于自然灾害保障范围，赔付修复费用500元。</div>
-  </div>
-
-  <button class="btn" onclick="go('quiz')" style="margin-top:12px">🎯 看图识灾挑战 →</button>
-</div>
-
-<!-- 看图识灾 -->
-<div class="page" id="page-quiz">
-  <h2>🎯 看图识灾</h2>
-  <p id="quiz-question" style="font-size:15px;color:#f0d9a0;margin:12px 0;line-height:1.6"></p>
-  <div id="quiz-options"></div>
-  <div id="quiz-feedback" class="feedback"></div>
-  <p id="quiz-progress" style="font-size:13px;color:#8a7e68;text-align:center;margin-top:12px"></p>
-</div>
-
-<!-- 完成 -->
-<div class="page" id="page-end">
-  <div style="text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">💪</div>
-    <h1>用案例说话！</h1>
-    <p style="text-align:center;margin:16px 0">这些真实案例说明——</p>
-    <p style="text-align:center;font-size:20px;color:#f0d9a0;margin:12px 0">"风险就在身边，保障不贵但安心"</p>
-    <p style="text-align:center;color:#c0b498;font-size:14px;">——华泰财产保险，守护每一个家</p>
-    <button class="btn" onclick="go('cases')" style="margin-top:20px">🔄 重新查看</button>
-  </div>
-</div>
-
 <script>
-const quiz=[
-  {q:'照片中厨房严重烧毁，橱柜、油烟机全部损坏，墙皮大面积脱落。这属于哪种事故类型？',o:['🔥 燃气火灾','💧 水暖管破裂','⚡ 电路起火'],a:0},
-  {q:'照片中客厅天花板有大片水渍，墙面起皮脱落，地板泡水变形。这是哪种事故？',o:['🔥 燃气火灾','💧 水暖管破裂','🌊 暴雨灾害'],a:1},
-  {q:'照片中电线短路烧焦，墙面插座周围熏黑，电器外壳熔化。这是哪种事故？',o:['💧 水暖管破裂','⚡ 电路起火','🌊 暴雨灾害'],a:1},
-  {q:'照片中屋顶渗水，墙面有大面积霉斑，雨水从裂缝渗入室内。这是哪种事故？',o:['🔥 燃气火灾','⚡ 电路起火','🌊 暴雨灾害'],a:2}
-];
-let qidx=0;
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  if(id==='quiz'){qidx=0;showQ();}
-}
-function showQ(){
-  const q=quiz[qidx];
-  document.getElementById('quiz-question').textContent='第'+(qidx+1)+'题：'+q.q.substring(0,50)+'……';
-  const opts=document.getElementById('quiz-options');opts.innerHTML='';
-  q.o.forEach((t,i)=>{
-    const b=document.createElement('button');b.className='btn option';b.textContent=t;
-    b.onclick=()=>checkQ(i);opts.appendChild(b);
-  });
-  document.getElementById('quiz-feedback').className='feedback';
-  document.getElementById('quiz-progress').textContent=(qidx+1)+'/'+quiz.length;
-}
-function checkQ(i){
-  const fb=document.getElementById('quiz-feedback');
-  if(i===quiz[qidx].a){
-    fb.className='feedback good';fb.textContent='✅ 正确！';
-    setTimeout(()=>{qidx++;if(qidx<quiz.length)showQ();else go('end');},1000);
-  } else {
-    fb.className='feedback bad';fb.textContent='❌ 再想想，正确答案是：'+quiz[qidx].o[quiz[qidx].a];
-    setTimeout(()=>{fb.className='feedback';},2000);
+var audioOn=true,bgmOn=true,curBgm=null;
+function initBGM(){if(curBgm)return;curBgm=new Audio('https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/bgm.mp3');curBgm.loop=true;curBgm.volume=0.08;}
+function playBGM(){initBGM();if(!bgmOn||!curBgm)return;curBgm.play().catch(function(){});}
+function stopBGM(){if(curBgm){curBgm.pause();}}
+function toggleBGM(){bgmOn=!bgmOn;var b=document.getElementById('bgmBtn');b.textContent=bgmOn?'🎵':'🎶';b.classList.toggle('on',bgmOn);if(bgmOn)playBGM();else stopBGM();}
+function gv(){return new Promise(function(r){var v=window.speechSynthesis.getVoices();if(v.length>0){r(v.find(function(x){return x.lang.startsWith('zh');})||v[0]);}else{window.speechSynthesis.onvoiceschanged=function(){var vv=window.speechSynthesis.getVoices();r(vv.find(function(x){return x.lang.startsWith('zh');})||vv[0]);};}});}
+function speak(t){if(!audioOn||!t||!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='zh-CN';u.rate=0.88;u.pitch=1.0;gv().then(function(v){if(v)u.voice=v;});window.speechSynthesis.speak(u);}
+function stopSpeak(){try{window.speechSynthesis.cancel();}catch(e){}}
+function toggleAudio(){audioOn=!audioOn;var b=document.getElementById('audioBtn');b.textContent=audioOn?'🔊':'🔇';b.classList.toggle('on',audioOn);if(!audioOn)stopSpeak();}
+function replayMP3(){var ap=document.getElementById('ap');if(ap){ap.currentTime=0;ap.play().catch(function(){})}}
+
+var S={};
+
+// ══════ 1. 视频开场 ══════
+S.watch_video={icon:'🎬',title:'先看宣传视频',
+story:'<div class="case-img"><video src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_video.mp4" controls style="width:100%;border-radius:8px;" playsinline webkit-playsinline>您的浏览器不支持视频播放</video></div><div class="tip">观看完毕后，点击下方按钮查看真实理赔案例</div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_start.mp3',
+picks:[{text:'看完视频，查看理赔案例 →',next:'case1',type:''}]};
+
+// ══════ 2-5. 四个真实案例 ══════
+S.case1={icon:'🔥',title:'真实案例一 · 燃气引发火灾',
+story:'<div class="case-box"><span class="label">华泰理赔案例</span><div class="item"><strong>保单号：</strong>CS328324552100025626</div><div class="item"><strong>被保险人：</strong>高XX</div><div class="item"><strong>出险时间：</strong>2025-10-13 19:00</div><div class="item"><strong>地址：</strong>济南市某小区</div><div class="item"><strong>事故原因：</strong>做饭时起火，导致厨房被烧</div><div class="item" style="font-size:18px;text-align:center;margin-top:8px;"><strong>赔偿金额：2,000元</strong></div></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/fire_0.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/fire_0.png" alt="燃气火灾现场一"></a></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/fire_1.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/fire_1.png" alt="燃气火灾现场二"></a></div><div class="tip">👆 点击图片放大查看</div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_case1.mp3',
+picks:[{text:'下一个案例 →',next:'case2',type:''}]};
+
+S.case2={icon:'💧',title:'真实案例二 · 水暖管破裂',
+story:'<div class="case-box"><span class="label">华泰理赔案例</span><div class="item"><strong>保单号：</strong>PB328324SB2330572404</div><div class="item"><strong>被保险人：</strong>于XX</div><div class="item"><strong>出险时间：</strong>2025-08-03 17:02</div><div class="item"><strong>地址：</strong>济南市某小区</div><div class="item"><strong>事故原因：</strong>水暖管爆裂，致使自家及楼下受损</div><div class="item" style="font-size:18px;text-align:center;margin-top:8px;"><strong>赔偿金额：8,600元</strong></div></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/pipe_1.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/pipe_1.png" alt="水暖管破裂现场一"></a></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/pipe_2.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/pipe_2.png" alt="水暖管破裂现场二"></a></div><div class="tip">👆 点击图片放大查看</div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_case2.mp3',
+picks:[{text:'下一个案例 →',next:'case3',type:''}]};
+
+S.case3={icon:'⚡',title:'真实案例三 · 电路起火引发火灾',
+story:'<div class="case-box"><span class="label">华泰理赔案例</span><div class="item"><strong>保单号：</strong>PB328324SC2451922541</div><div class="item"><strong>被保险人：</strong>吴XX</div><div class="item"><strong>出险时间：</strong>2025-10-01 12:52</div><div class="item"><strong>地址：</strong>济南市某小区</div><div class="item"><strong>事故原因：</strong>电线短路失火，造成储物室被烧</div><div class="item" style="font-size:18px;text-align:center;margin-top:8px;"><strong>赔偿金额：5,000元</strong></div></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/elec_0.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/elec_0.png" alt="电路起火现场一"></a></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/elec_1.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/elec_1.png" alt="电路起火现场二"></a></div><div class="tip">👆 点击图片放大查看</div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_case3.mp3',
+picks:[{text:'下一个案例 →',next:'case4',type:''}]};
+
+S.case4={icon:'🌊',title:'真实案例四 · 暴雨自然灾害',
+story:'<div class="case-box"><span class="label">华泰理赔案例</span><div class="item"><strong>保单号：</strong>PB328324SC2579467061</div><div class="item"><strong>被保险人：</strong>李XX</div><div class="item"><strong>出险时间：</strong>2025-10-06 09:50</div><div class="item"><strong>地址：</strong>济南市某小区</div><div class="item"><strong>事故原因：</strong>暴雨导致屋顶受损</div><div class="item" style="font-size:18px;text-align:center;margin-top:8px;"><strong>赔偿金额：500元</strong></div></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/storm_0.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/storm_0.png" alt="暴雨现场一"></a></div><div class="case-img"><a href="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/storm_1.png" target="_blank"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/storm_1.png" alt="暴雨现场二"></a></div><div class="tip">👆 点击图片放大查看</div>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_case4.mp3',
+picks:[{text:'看图识灾挑战 →',next:'quiz_intro',type:''}]};
+
+// ══════ 6. 总结 ══════
+
+S.quiz_intro={icon:'🎯',title:'交互体验 · 看图识灾',
+story:'<p>下面展示事故现场照片，你判断这是哪种风险：</p>',
+audio:'看图识灾环节。展示事故照片，你判断是哪种风险。一共四题。',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_quiz_intro.mp3',
+picks:[{text:'开始 →',next:'quiz1',type:''}]};
+
+S.quiz1={icon:'❓',title:'第1题 · 这是哪种事故？',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_quiz1.mp3',
+story:'<div class="case-img"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/fire_0.png" alt="现场照片" style="width:100%;"></div>',
+question:'这张照片属于哪种事故？',
+picks:[
+  {text:'🔥 燃气引发火灾',next:'q1a',type:'good'},
+  {text:'💧 水暖管破裂',next:'q1b',type:'wrong'},
+  {text:'⚡ 电路起火',next:'q1c',type:'wrong'},
+  {text:'🌊 暴雨自然灾害',next:'q1d',type:'wrong'}
+]};
+S.q1a={icon:'✅',title:'正确！',
+story:'<p>对！做饭忘关火，厨房被烧，华泰赔了2000元。</p><div class="tip">向客户推广时就用这个案例——身边人都会遇到的风险。</div>',
+audio:'对，做饭忘关火厨房被烧，华泰赔了2000元。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q1a.mp3',
+picks:[{text:'下一题 →',next:'quiz2',type:''}]};
+S.q1b={icon:'❌',title:'再想想',story:'<p>不是水管问题。这是燃气引发火灾。</p>',audio:'这是燃气引发火灾。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q1b.mp3',picks:[{text:'重新回答',next:'quiz1',type:''}]};
+S.q1c={icon:'❌',title:'再想想',story:'<p>不是电路问题。这是燃气引发火灾。</p>',audio:'这是燃气引发火灾。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q1c.mp3',picks:[{text:'重新回答',next:'quiz1',type:''}]};
+S.q1d={icon:'❌',title:'再想想',story:'<p>不是暴雨问题。这是燃气引发火灾。</p>',audio:'这是燃气引发火灾。',picks:[{text:'重新回答',next:'quiz1',type:''}]};
+
+S.quiz2={icon:'❓',title:'第2题 · 这是哪种事故？',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_quiz2.mp3',
+story:'<div class="case-img"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/pipe_1.png" alt="现场照片" style="width:100%;"></div>',
+question:'这张照片属于哪种事故？',
+picks:[
+  {text:'🔥 燃气引发火灾',next:'q2c',type:'wrong'},
+  {text:'💧 水暖管破裂',next:'q2a',type:'good'},
+  {text:'⚡ 电路起火',next:'q2c',type:'wrong'},
+  {text:'🌊 暴雨自然灾害',next:'q2c',type:'wrong'}
+]};
+S.q2a={icon:'✅',title:'正确！',
+story:'<p>对！水暖管爆裂，自家和楼下被泡，华泰赔了8600元。</p>',
+audio:'正确，水暖管爆裂，华泰赔了8600元。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q2a.mp3',
+picks:[{text:'下一题 →',next:'quiz3',type:''}]};
+S.q2c={icon:'❌',title:'再想想',story:'<p>不准确。这是水暖管爆裂。</p>',audio:'这是水暖管破裂。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q2c.mp3',picks:[{text:'重新回答',next:'quiz2',type:''}]};
+
+S.quiz3={icon:'❓',title:'第3题 · 这是哪种事故？',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_quiz3.mp3',
+story:'<div class="case-img"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/elec_0.png" alt="现场照片" style="width:100%;"></div>',
+question:'这张照片属于哪种事故？',
+picks:[
+  {text:'🔥 燃气引发火灾',next:'q3c',type:'wrong'},
+  {text:'💧 水暖管破裂',next:'q3c',type:'wrong'},
+  {text:'⚡ 电路起火',next:'q3a',type:'good'},
+  {text:'🌊 暴雨自然灾害',next:'q3c',type:'wrong'}
+]};
+S.q3a={icon:'✅',title:'正确！',
+story:'<p>对！电线短路起火，储物室被烧，华泰赔了5000元。</p>',
+audio:'正确，电路短路起火，华泰赔了5000元。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q3a.mp3',
+picks:[{text:'下一题 →',next:'quiz4',type:''}]};
+S.q3c={icon:'❌',title:'再想想',story:'<p>不准确。这是电路起火。</p>',audio:'这是电路起火。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q3c.mp3',picks:[{text:'重新回答',next:'quiz3',type:''}]};
+
+S.quiz4={icon:'❓',title:'第4题 · 这是哪种事故？',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_quiz4.mp3',
+story:'<div class="case-img"><img src="https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al/storm_0.png" alt="现场照片" style="width:100%;"></div>',
+question:'这张照片属于哪种事故？',
+picks:[
+  {text:'🔥 燃气引发火灾',next:'q4c',type:'wrong'},
+  {text:'💧 水暖管破裂',next:'q4c',type:'wrong'},
+  {text:'⚡ 电路起火',next:'q4c',type:'wrong'},
+  {text:'🌊 暴雨自然灾害',next:'q4a',type:'good'}
+]};
+S.q4a={icon:'✅',title:'正确！',
+story:'<p>对！暴雨导致屋顶受损，华泰赔了500元。</p>',
+audio:'正确，暴雨导致屋顶受损，华泰赔了500元。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q4a.mp3',
+picks:[{text:'查看学习总结 →',next:'end',type:''}]};
+S.q4c={icon:'❌',title:'再想想',story:'<p>不是。这是暴雨导致的屋顶受损。</p>',audio:'这是暴雨自然灾害。',sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_q4c.mp3',picks:[{text:'重新回答',next:'quiz4',type:''}]};
+
+
+S.end={icon:'💪',title:'学习完成 · 用案例说话',
+story:'<div class="highlight"><strong>向用户宣传推广时，一定要用好案例。</strong><br><br>用例子来渲染<strong>水火无情</strong>，<strong>风险无处不在</strong>，我们需加以防范。<br><br>买一份保险，就是一份保障。<br><br>再推出华泰保险——</div><div class="case-box"><div class="item"><strong>华泰财产保险有限公司</strong></div><div class="item">成立于1996年，全国性老牌保险公司</div><div class="item">燃气险领域全国市场第一</div><div class="item">理赔有口碑，24小时热线：<strong>4006095509</strong></div></div><p>你今天学到的四个案例：<br>🔥 燃气火灾 2000元<br>💧 水暖破裂 8600元<br>⚡ 电路起火 5000元<br>🌊 暴雨灾害 500元</p><p>记住——<strong>案例就是最好的销售武器。</strong></p>',
+sceneMp3:'https://naidou-audio99-1434426321.cos.ap-guangzhou.myqcloud.com/audio/al_end.mp3',
+picks:[{text:'重新学习',next:'watch_video',type:''}]};
+
+// ══════ 渲染引擎 ══════
+function go(id,noAudio){
+  stopSpeak();
+  var s=S[id];if(!s)return;
+  var c=document.getElementById('content');
+  var h='<div class="fade">';
+  if(s.icon)h+='<div class="si">'+s.icon+'</div>';
+  if(s.title)h+='<div class="st">'+s.title+'</div>';
+  h+='<div class="story">'+s.story+'</div>';
+  if(s.picks&&s.picks.length>0){
+    h+='<div class="choices">';
+    for(var i=0;i<s.picks.length;i++)h+='<button class="cbtn" onclick="pick(\''+id+'\','+i+')">'+s.picks[i].text+'</button>';
+    h+='</div>';
+  }
+  h+='</div>';
+  c.innerHTML=h;
+  playBGM();
+  // MP3播放（noAudio时跳过，pick()已提前播放）
+  if(!noAudio&&s.sceneMp3){
+    var ap=document.getElementById('ap');
+    if(!ap){
+      ap=document.createElement('audio');
+      ap.id='ap';ap.style.display='none';
+      document.getElementById('app').appendChild(ap);
+    }
+    ap.src=s.sceneMp3;
+    ap.volume=0.9;
+    ap.play().catch(function(){});
+    c.innerHTML+='<div style="text-align:center;margin-top:6px;"><button class="replay-btn" onclick="replayMP3()">🔊 重新播放</button></div>';
   }
 }
-const bgm=document.getElementById('bgm'),bgmBtn=document.getElementById('bgmBtn');
-bgmBtn.onclick=()=>{if(bgm.paused){bgm.play();bgmBtn.textContent='🎵 关闭'}else{bgm.pause();bgmBtn.textContent='🎵 背景'}};
+function pick(id,idx){
+  var s=S[id];
+  var btns=document.querySelectorAll('.cbtn');
+  for(var i=0;i<btns.length;i++)btns[i].classList.add('disabled');
+  if(s.picks[idx].next&&S[s.picks[idx].next]){
+    var nid=s.picks[idx].next;
+    // 在用户手势内立即播放下一个场景的音频
+    if(S[nid].sceneMp3){
+      var ap=document.getElementById('ap');
+      if(!ap){
+        ap=document.createElement('audio');
+        ap.id='ap';ap.style.display='none';
+        document.getElementById('app').appendChild(ap);
+      }
+      ap.src=S[nid].sceneMp3;ap.volume=0.9;
+      ap.play().catch(function(){});
+    }
+    setTimeout(function(){go(nid,1);},500);
+  }
+}
+
+// 启动页
+document.getElementById('content').innerHTML=
+  '<div class="splash" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;">'+
+  '<div style="font-size:48px;margin-bottom:8px;">📸</div>'+
+  '<h1 style="font-size:24px;margin-bottom:4px;color:#2a221a;">理赔案例</h1>'+
+  '<h2 style="font-size:17px;margin-bottom:4px;color:#6a5c4c;">用事实说话</h2>'+
+  '<div style="color:#b0a898;font-size:13px;line-height:1.6;margin-bottom:24px;">华泰 · 宜家安馨—福<br>先看视频 · 再看真实案例</div>'+
+  '<button class="splash-btn" style="background:#c0392b;color:#fff;border:none;padding:14px 44px;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;font-family:inherit;" onclick="playBGM();go(\'watch_video\')">开始学习</button>'+
+  '<div style="color:#b0a898;font-size:12px;margin-top:16px;">🎵 古筝背景 · 🔊 语音讲解</div>'+
+  '</div>';
 </script>
 </body>
 </html>
