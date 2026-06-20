@@ -1,0 +1,387 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/ubuntu/.openclaw/workspace",
+      "sandbox": {
+        "browser": {
+          "enabled": false
+        }
+      },
+      "model": {
+        "primary": "deepseek/deepseek-v4-flash"
+      },
+      "memorySearch": {
+        "provider": "openai-compatible",
+        "model": "text-embedding-v3",
+        "fallback": "none",
+        "remote": {
+          "baseUrl": "https://api.deepseek.com/v1",
+          "apiKey": "sk-xxxx...xxxx"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "c9184c777231c2f0be9c34f623beaee84fdf8cbcf1a03f1f69f5fe2286beaa36"
+    },
+    "port": 20966,
+    "bind": "lan",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowedOrigins": [
+        "http://101.34.82.153:20966"
+      ],
+      "allowInsecureAuth": true,
+      "dangerouslyDisableDeviceAuth": true,
+      "basePath": "/s06240"
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "full"
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "session-logs": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "slack": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "tencent-cloud-cos": {
+        "enabled": false
+      },
+      "tencent-meeting-mcp": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      },
+      "lightclawbot-cron": {
+        "enabled": false
+      },
+      "cos-vector-bucket": {
+        "enabled": false
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-06-13T02:51:18.713Z",
+    "lastRunVersion": "2026.6.1",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.1",
+    "lastTouchedAt": "2026-06-13T03:09:59.797Z"
+  },
+  "messages": {
+    "groupChat": {
+      "visibleReplies": "automatic"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "memory-tencentdb": {
+        "enabled": true,
+        "hooks": {
+          "allowConversationAccess": true
+        },
+        "config": {
+          "embedding": {
+            "enabled": true,
+            "provider": "openai-compatible",
+            "baseUrl": "https://api.deepseek.com/v1",
+            "apiKey": "sk-xxxx...xxxx",
+            "model": "text-embedding-v3",
+            "dimensions": 1024,
+            "sendDimensions": false
+          }
+        }
+      },
+      "dingtalk-connector": {
+        "enabled": false
+      },
+      "openclaw-plugin-yuanbao": {
+        "enabled": false
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "lightclawbot": {
+        "enabled": true
+      },
+      "openclaw-lark": {
+        "enabled": false
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "qqbot": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "whatsapp": {
+        "enabled": false
+      },
+      "slack": {
+        "enabled": false
+      },
+      "deepseek": {
+        "enabled": true
+      },
+      "browser": {
+        "enabled": true
+      },
+      "tavily": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "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"
+          }
+        }
+      }
+    }
+  },
+  "browser": {
+    "enabled": true,
+    "executablePath": "/home/ubuntu/.cache/ms-playwright/chromium-1223/chrome-linux64/chrome",
+    "noSandbox": true,
+    "defaultProfile": "user",
+    "profiles": {
+      "user": {
+        "cdpUrl": "http://localhost:9222",
+        "driver": "existing-session",
+        "attachOnly": true,
+        "color": "#4285F4",
+        "userDataDir": "/home/ubuntu/.openclaw/browser-existing-session"
+      }
+    },
+    "ssrfPolicy": {
+      "dangerouslyAllowPrivateNetwork": false
+    }
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "sk-xxxx...xxxx\n",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-v4-flash",
+            "name": "DeepSeek V4 Flash"
+          },
+          {
+            "id": "deepseek-v4-pro",
+            "name": "DeepSeek V4 Pro"
+          }
+        ]
+      },
+      "zhipu": {
+        "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "ee1b727fa18447f98ed3774201c2359b.Cc0PyUNixVinC2pJ",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "GLM-5V-Turbo",
+            "name": "GLM-5V-Turbo",
+            "input": [
+              "text",
+              "image"
+            ]
+          },
+          {
+            "id": "GLM-5.1",
+            "name": "GLM-5.1"
+          },
+          {
+            "id": "GLM-5-Turbo",
+            "name": "GLM-5-Turbo"
+          },
+          {
+            "id": "glm-5",
+            "name": "GLM-5"
+          },
+          {
+            "id": "glm-4.7",
+            "name": "GLM-4.7"
+          },
+          {
+            "id": "glm-4.6",
+            "name": "GLM-4.6"
+          },
+          {
+            "id": "glm-4.5-air",
+            "name": "GLM-4.5-Air"
+          },
+          {
+            "id": "glm-4.5",
+            "name": "GLM-4.5"
+          }
+        ]
+      }
+    },
+    "mode": "merge"
+  },
+  "channels": {
+    "lightclawbot": {
+      "accounts": {
+        "100048985454": {
+          "apiKey": "e72dc4660abc9350db55194d68cb5f0d1ce27c7b"
+        }
+      },
+      "enabled": true
+    },
+    "wecom": {
+      "enabled": true,
+      "connectionMode": "websocket",
+      "botId": "aibUw4IJzj67uJAnMzUuT7K6eLp-jgKJxn0",
+      "secret": "uf9Pxz5xkuvoO1r4bd7unbblcBtKUcSNTYDZDr6suSe",
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ],
+      "groupAllowFrom": [
+        "*"
+      ]
+    },
+    "openclaw-weixin": {
+      "accounts": {}
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "cos-memory-search": {
+          "enabled": true
+        }
+      }
+    }
+  }
+}

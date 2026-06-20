@@ -1,138 +1,199 @@
 #!/bin/bash
 # ============================================================
-# 静渊服务器 · 一键恢复脚本
-# 用法：在全新 Ubuntu 22.04 上执行：
-#   curl -sL https://raw.githubusercontent.com/GLM-S/naidou-treasure/main/scripts/restore.sh | bash
-# 或本地执行：
-#   bash restore.sh
+# 静渊服务器 · 一键恢复脚本 v2.0
+# 用法：在全新 Ubuntu 22.04/24.04 上执行：
+#   bash <(curl -sL https://raw.githubusercontent.com/GLM-S/-naidou-treasure-/main/scripts/restore.sh)
+# 或克隆仓库后本地执行：
+#   cd ~/naidou-treasure && bash scripts/restore.sh
 # ============================================================
 
 set -e
 
-echo "========================================"
-echo " 静渊服务器 · 一键恢复 "
-echo " 适用：Ubuntu 22.04 全新系统"
-echo "========================================"
-
-# ---------- 配置区（执行前按需修改）----------
-GITHUB_REPO="git@github.com:GLM-S/-naidou-treasure-.git"
+# ========== 配置 ==========
 GITHUB_REPO_HTTPS="https://github.com/GLM-S/-naidou-treasure-.git"
+GITHUB_CLONE_DIR="$HOME/naidou-treasure"
 WORKSPACE_DIR="$HOME/.openclaw/workspace"
-DIFY_DIR="$HOME/dify"
-DATA_DISK_MOUNT="/mnt/data"
+DATA_DISK="/dev/vdb"
+DATA_MOUNT="/mnt/data"
+MY_IP=$(curl -s ifconfig.me 2>/dev/null || echo "获取失败")
 
-# ---------- 1. 系统基础 ----------
-echo ""
-echo "[1/8] 系统基础更新..."
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${GREEN}========================================${NC}"
+echo -e "${GREEN}  静渊服务器 · 一键恢复 v2.0${NC}"
+echo -e "${GREEN}  时间：$(date '+%Y-%m-%d %H:%M:%S')${NC}"
+echo -e "${GREEN}  系统：$(lsb_release -ds 2>/dev/null || cat /etc/os-release | head -1)${NC}"
+echo -e "${GREEN}  IP：${MY_IP}${NC}"
+echo -e "${GREEN}========================================${NC}"
+
+# ========== 1. 基础系统 ==========
+step() { echo -e "\n${YELLOW}[$1/$TOTAL] $2${NC}"; }
+TOTAL=9
+
+step 1 "系统基础更新"
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget git vim ufw ca-certificates gnupg lsb-release
+sudo apt install -y curl wget git vim ufw ca-certificates gnupg lsb-release unzip
 
-# ---------- 2. 安装 Docker ----------
-echo ""
-echo "[2/8] 安装 Docker..."
-if ! command -v docker &>/dev/null; then
-  curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
-  sudo sh /tmp/get-docker.sh
-  sudo usermod -aG docker $USER
-fi
-docker --version
-
-# ---------- 3. 配置 Docker 国内镜像 ----------
-echo ""
-echo "[3/8] 配置 Docker 国内镜像源..."
-sudo mkdir -p /etc/docker
-cat << 'EOF' | sudo tee /etc/docker/daemon.json
-{
-  "registry-mirrors": [
-    "https://mirror.ccs.tencentyun.com",
-    "https://docker.mirrors.ustc.edu.cn"
-  ]
-}
-EOF
-sudo systemctl daemon-reexec
-sudo systemctl restart docker
-sleep 2
-echo "Docker 镜像源已配置"
-
-# ---------- 4. 挂载数据盘 ----------
-echo ""
-echo "[4/8] 挂载数据盘..."
-if lsblk | grep -q vdb; then
-  sudo mkdir -p "$DATA_DISK_MOUNT"
-  if ! mount | grep -q vdb; then
-    sudo mount /dev/vdb "$DATA_DISK_MOUNT"
-    echo "/dev/vdb $DATA_DISK_MOUNT ext4 defaults 0 0" | sudo tee -a /etc/fstab
-    echo "数据盘已挂载到 $DATA_DISK_MOUNT"
+# ========== 2. 数据盘挂载 ==========
+step 2 "挂载数据盘"
+if lsblk | grep -q "$(basename $DATA_DISK)"; then
+  if ! mount | grep -q "$DATA_DISK"; then
+    sudo mkdir -p "$DATA_MOUNT"
+    sudo mount "$DATA_DISK" "$DATA_MOUNT"
+    echo "$DATA_DISK $DATA_MOUNT ext4 defaults 0 0" | sudo tee -a /etc/fstab
+    echo -e "${GREEN}数据盘已挂载到 $DATA_MOUNT${NC}"
   else
-    echo "数据盘已挂载"
+    echo -e "${GREEN}数据盘已挂载${NC}"
+  fi
+else
+  echo -e "${YELLOW}未检测到数据盘，跳过${NC}"
+fi
+
+# ========== 3. 安装 Node.js 和 pnpm ==========
+step 3 "安装 Node.js + pnpm"
+if ! command -v node &>/dev/null; then
+  curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+  sudo apt install -y nodejs
+fi
+if ! command -v pnpm &>/dev/null; then
+  npm install -g pnpm
+fi
+echo "Node: $(node -v) | pnpm: $(pnpm -v)"
+
+# ========== 4. 安装 OpenClaw ==========
+step 4 "安装 OpenClaw"
+if ! command -v openclaw &>/dev/null; then
+  pnpm install -g openclaw@latest
+fi
+echo "OpenClaw: $(openclaw --version 2>/dev/null || echo '已安装')"
+
+# ========== 5. 从 GitHub 拉取仓库 ==========
+step 5 "拉取宝藏库"
+if [ ! -d "$GITHUB_CLONE_DIR" ]; then
+  git clone "$GITHUB_REPO_HTTPS" "$GITHUB_CLONE_DIR"
+  echo -e "${GREEN}仓库已克隆到 $GITHUB_CLONE_DIR${NC}"
+else
+  cd "$GITHUB_CLONE_DIR" && git pull
+  echo -e "${GREEN}仓库已更新${NC}"
+fi
+
+# ========== 6. 恢复 workspace 文件 ==========
+step 6 "恢复 workspace（技能+记忆+恢复脚本）"
+mkdir -p "$WORKSPACE_DIR"
+
+# 恢复 skills 目录（自定义技能）
+if [ -d "$GITHUB_CLONE_DIR/skills" ]; then
+  rsync -a "$GITHUB_CLONE_DIR/skills/" "$WORKSPACE_DIR/skills/" 2>/dev/null || \
+  cp -rn "$GITHUB_CLONE_DIR/skills/"* "$WORKSPACE_DIR/skills/" 2>/dev/null || true
+  echo -e "${GREEN}技能已恢复${NC}"
+fi
+
+# 恢复 memory 目录（记忆文件）
+if [ -d "$GITHUB_CLONE_DIR/memory" ]; then
+  mkdir -p "$WORKSPACE_DIR/memory"
+  rsync -a "$GITHUB_CLONE_DIR/memory/" "$WORKSPACE_DIR/memory/" 2>/dev/null || \
+  cp -rn "$GITHUB_CLONE_DIR/memory/"* "$WORKSPACE_DIR/memory/" 2>/dev/null || true
+  echo -e "${GREEN}记忆文件已恢复${NC}"
+fi
+
+# 恢复核心配置文件（MEMORY.md / SOUL.md 等）
+for f in MEMORY.md SOUL.md USER.md IDENTITY.md TOOLS.md HEARTBEAT.md AGENTS.md; do
+  if [ -f "$GITHUB_CLONE_DIR/$f" ]; then
+    cp "$GITHUB_CLONE_DIR/$f" "$WORKSPACE_DIR/$f"
+  fi
+done
+
+# 恢复 server 文件
+if [ -f "$GITHUB_CLONE_DIR/server.js" ]; then
+  cp "$GITHUB_CLONE_DIR/server.js" "$WORKSPACE_DIR/"
+fi
+if [ -f "$GITHUB_CLONE_DIR/package.json" ]; then
+  cp "$GITHUB_CLONE_DIR/package.json" "$WORKSPACE_DIR/"
+fi
+if [ -f "$GITHUB_CLONE_DIR/serve.json" ]; then
+  cp "$GITHUB_CLONE_DIR/serve.json" "$WORKSPACE_DIR/"
+fi
+
+# 恢复恢复脚本自身
+cp "$GITHUB_CLONE_DIR/scripts/restore.sh" "$WORKSPACE_DIR/scripts/"
+
+echo -e "${GREEN}workspace 文件已恢复${NC}"
+
+# ========== 7. 恢复 OpenClaw 配置 ==========
+step 7 "恢复 OpenClaw 配置"
+# 注意：openclaw.json 包含敏感密钥（API Key、企微配置等）
+# 需要从安全备份恢复，这里输出指引
+if [ -f "$HOME/.openclaw/openclaw.json" ]; then
+  echo -e "${GREEN}OpenClaw 配置已存在，跳过${NC}"
+else
+  echo -e "${YELLOW}"
+  echo "  ⚠️ OpenClaw 配置文件 ($HOME/.openclaw/openclaw.json) 包含："
+  echo "     - API Keys（DeepSeek、智谱等）"
+  echo "     - 企业微信 Bot 配置"
+  echo "     - COS 密钥"
+  echo ""
+  echo "  🔑 恢复方式："
+  echo "    方法A：从旧服务器的 ~/.openclaw/openclaw.json 手动拷贝"
+  echo "    方法B：openclaw configure 重新配置"
+  echo "    方法C：备份在 COS 冷备桶中，用 coscli 下载"
+  echo -e "${NC}"
+fi
+
+# ========== 8. 安装 server 依赖并启动 ==========
+step 8 "启动静态服务"
+cd "$WORKSPACE_DIR"
+if [ -f "package.json" ]; then
+  npm install --production 2>/dev/null || true
+fi
+if ! pm2 list 2>/dev/null | grep -q naidou-serve; then
+  if [ -f "server.js" ]; then
+    pm2 start server.js --name naidou-serve 2>/dev/null || \
+    npx serve -s . -l 8080 &
+    echo -e "${GREEN}静态服务已启动${NC}"
   fi
 fi
+pm2 save 2>/dev/null || true
 
-# ---------- 5. 从 GitHub 拉取配置 ----------
-echo ""
-echo "[5/8] 从 GitHub 拉取配置文件..."
-if [ ! -d "$HOME/naidou-treasure" ]; then
-  git clone "$GITHUB_REPO_HTTPS" "$HOME/naidou-treasure" 2>/dev/null || \
-  git clone "https://kkgithub.com/GLM-S/-naidou-treasure-.git" "$HOME/naidou-treasure"
-fi
-
-# 如果 clone 成功，恢复配置文件
-if [ -d "$HOME/naidou-treasure" ]; then
-  echo "配置文件已拉取到 $HOME/naidou-treasure"
-  
-  # 恢复 docker-compose
-  if [ -f "$HOME/naidou-treasure/docker-compose.yml" ]; then
-    cp "$HOME/naidou-treasure/docker-compose.yml" "$HOME/"
-    echo "docker-compose.yml 已恢复"
-  fi
-  
-  # 恢复环境变量
-  if [ -f "$HOME/naidou-treasure/.env" ]; then
-    cp "$HOME/naidou-treasure/.env" "$HOME/"
-    echo ".env 已恢复"
-  fi
-fi
-
-# ---------- 6. 安装 Dify（docker-compose） ----------
-echo ""
-echo "[6/8] 部署 Dify..."
-if [ ! -d "$DIFY_DIR" ]; then
-  git clone --depth 1 "https://kkgithub.com/langgenius/dify.git" "$DIFY_DIR" 2>/dev/null || \
-  git clone "https://github.com/langgenius/dify.git" "$DIFY_DIR" --depth 1 2>/dev/null || \
-  echo "Dify 源码拉取失败，稍后请手动重试"
-fi
-
-if [ -f "$DIFY_DIR/docker/docker-compose.yaml" ]; then
-  cd "$DIFY_DIR/docker"
-  cp docker-compose.yaml docker-compose.yaml.bak
-  # 修改端口避免冲突（默认80→8082）
-  sed -i 's/"80:80"/"8082:80"/g' docker-compose.yaml
-  docker compose up -d 2>/dev/null || echo "Dify 部署需要在配置好 .env 后手动执行 docker compose up -d"
-  cd ~
-  echo "Dify docker-compose 已就绪"
-fi
-
-# ---------- 7. 配置定时备份 ----------
-echo ""
-echo "[7/8] 配置每日自动备份到 GitHub..."
-cat << 'CRON' > /tmp/backup-cron
-# 每天凌晨2点备份到 GitHub
-0 2 * * * cd $HOME/naidou-treasure && git add -A && git commit -m "auto-backup $(date +%Y-%m-%d)" && git push 2>/dev/null || echo "backup failed"
-CRON
-crontab /tmp/backup-cron 2>/dev/null || echo "crontab 配置跳过（需手动设置）"
-rm /tmp/backup-cron
-
-# ---------- 8. 完成 ----------
-echo ""
+# ========== 9. 完成 ==========
+step 9 "完成"
+echo -e "${GREEN}"
+echo "========================================" 
+echo "  ✅ 恢复完成！"
 echo "========================================"
-echo " ✅ 恢复完成！"
-echo "========================================"
+echo -e "${NC}"
 echo ""
-echo "下一步操作："
-echo "  1. 重新登录使 Docker 用户组生效： exit → ssh 重新连接"
-echo "  2. 配置 GitHub SSH Key： ssh-keygen → cat ~/.ssh/id_ed25519.pub"
-echo "  3. 启动 Dify： cd ~/dify/docker && docker compose up -d"
-echo "  4. 恢复记忆文件： cp -r ~/naidou-treasure/memory-backup/* ~/.openclaw/workspace/memory/"
-echo "  5. 配置 API Key：编辑 ~/naidou-treasure/.env 填入 DeepSeek/其他 Key"
+echo "  📌 后续手动步骤："
 echo ""
-echo "详细文档：~/naidou-treasure/README.md"
+echo "  1. 恢复敏感配置（必做）："
+echo "     cp ~/naidou-treasure/backup/openclaw.json ~/.openclaw/openclaw.json"
+echo "     或从旧服务器 scp："
+echo "     scp ubuntu@旧IP:~/.openclaw/openclaw.json ~/.openclaw/"
+echo ""
+echo "  2. 恢复 SSH Key（Git推送用）："
+echo "     cp ~/naidou-treasure/backup/id_ed25519* ~/.ssh/"
+echo "     chmod 600 ~/.ssh/id_ed25519"
+echo ""
+echo "  3. 恢复 COS 配置："
+echo "     cp ~/naidou-treasure/backup/.cos.conf ~/"
+echo ""
+echo "  4. 配置 OpenClaw 企业微信通道："
+echo "     openclaw gateway configure"
+echo ""
+echo "  5. 启动 OpenClaw："
+echo "     openclaw gateway start"
+echo ""
+echo "  6. 验证状态："
+echo "     openclaw status"
+echo ""
+echo "  💾 备份管理："
+echo "    仓库：${GITHUB_REPO_HTTPS}"
+echo "    COS冷备桶：naidou-1434426321"
+echo ""
+echo "  📂 重要路径："
+echo "    workspace：$WORKSPACE_DIR"
+echo "    OpenClaw配置：~/.openclaw/openclaw.json"
+echo "    数据盘：$DATA_MOUNT（若有）"
+echo ""
